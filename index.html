@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>France Ki Kahani by Mooni — Examen Civique 2026 Practice</title>
+<meta name="description" content="Free practice app for France civic exam 2026. 90+ questions, bilingual FR-EN, Hindi explanations. CSP, CR, Naturalization prep.">
+<meta name="keywords" content="france civic exam 2026, examen civique france, france ki kahani, france ki kahani by mooni, CIR exam, carte de séjour, naturalisation france, hindi french exam">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050505;color:#fff;font-family:'DM Sans',system-ui,sans-serif;overflow-x:hidden}
+button{font-family:inherit;cursor:pointer;border:none}
+input,select{font-family:inherit}
+.page{min-height:100vh;padding:16px}
+.mx{max-width:640px;margin:0 auto}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:12px;max-width:640px;margin-left:auto;margin-right:auto}
+.logo{font-family:Georgia,serif;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.logo .r{color:#dc2626}.logo .y{color:#f59e0b}
+.back{font-size:18px;color:#666}
+.sub{font-size:12px;color:#555;font-family:monospace}
+.inp{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 15px;color:#fff;font-size:14px;margin-bottom:12px;outline:none}
+.inp:focus{border-color:#dc2626}
+.card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;cursor:pointer;color:#fff;text-align:center;transition:border-color 0.2s}
+.card:hover{border-color:rgba(245,158,11,0.4)}
+.tag{font-size:11px;color:#444;letter-spacing:2px;text-transform:uppercase;font-family:monospace;font-weight:700;margin-bottom:8px}
+.opt-btn{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 14px;color:#fff;font-size:13px;text-align:left;display:flex;align-items:center;gap:10px;width:100%;transition:all 0.15s;margin-bottom:6px}
+.opt-btn:not(:disabled):hover{border-color:rgba(255,255,255,0.25)}
+.opt-btn:disabled{cursor:default}
+.opt-letter{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.correct{background:rgba(16,185,129,0.12)!important;border-color:#10b981!important}
+.wrong{background:rgba(220,38,38,0.12)!important;border-color:#dc2626!important}
+.bar{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;margin-bottom:16px}
+.bar-fill{height:100%;background:linear-gradient(90deg,#dc2626,#f59e0b);transition:width 0.3s;border-radius:2px}
+.circle{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;font-family:monospace}
+.hidden{display:none!important}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp 0.4s ease-out}
+</style>
+</head>
+<body>
+
+<!-- ====== SUBSCRIBE GATE ====== -->
+<div id="gatePage" class="page" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#050505,#1a0505,#050505);position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(220,38,38,0.1) 0%,transparent 50%);pointer-events:none"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#dc2626,#f59e0b,#dc2626,transparent)"></div>
+  <div style="max-width:480px;width:100%;text-align:center;position:relative;z-index:1;padding:16px">
+    <div style="font-size:64px;margin-bottom:12px">🇫🇷</div>
+    <h1 style="font-family:Georgia,serif;font-size:clamp(1.6rem,5vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:6px">
+      France Ki <span style="background:linear-gradient(135deg,#dc2626,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Kahani</span> <span style="font-size:0.5em;color:#999;font-weight:400">by Mooni</span>
+    </h1>
+    <p style="color:#f59e0b;font-family:monospace;font-size:11px;letter-spacing:3px;margin-bottom:16px">FRANCE KI KAHANI BY MOONI • EXAMEN CIVIQUE 2026</p>
+    <p style="color:#999;font-size:14px;line-height:1.7;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto">
+      Practice <b style="color:#fff" id="qcount"></b> official questions. Pass with <b style="color:#dc2626">80%</b>. Secure your CSP / CR / Naturalization.
+    </p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
+      <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:4px 10px;font-size:11px;color:#aaa">🌐 Bilingual</span>
+      <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:4px 10px;font-size:11px;color:#aaa">⏱️ Timer</span>
+      <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:4px 10px;font-size:11px;color:#aaa">🔍 Analysis</span>
+      <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:4px 10px;font-size:11px;color:#aaa">🇮🇳 Hindi+EN</span>
+    </div>
+
+    <!-- Step 1: Subscribe -->
+    <div id="gateStep1">
+      <button onclick="openYT()" style="background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;padding:16px 40px;border-radius:50px;font-size:16px;font-weight:700;box-shadow:0 0 30px rgba(220,38,38,0.25)">
+        ▶ Subscribe on YouTube to Unlock
+      </button>
+      <p style="color:#444;font-size:11px;margin-top:12px">Free access after subscribing</p>
+    </div>
+
+    <!-- Step 2: Confirm -->
+    <div id="gateStep2" class="hidden fade-up">
+      <p style="color:#10b981;font-weight:600;margin-bottom:12px">✅ Did you subscribe?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button onclick="showStep3()" style="background:#fff;color:#000;padding:12px 28px;border-radius:50px;font-weight:700">Yes, I Subscribed! 🎉</button>
+        <button onclick="openYT()" style="background:transparent;color:#aaa;border:1px solid rgba(255,255,255,0.15);padding:12px 20px;border-radius:50px;font-weight:600">Open Channel Again</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Register -->
+    <div id="gateStep3" class="hidden fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:24px;max-width:380px;margin:0 auto;text-align:left">
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:14px;text-align:center">🎯 Set Up Your Profile</h3>
+      <input id="regName" class="inp" placeholder="Your Name">
+      <input id="regEmail" class="inp" placeholder="Email" type="email">
+      <label style="display:block;font-size:12px;color:#666;margin-bottom:4px">Track:</label>
+      <select id="regTrack" class="inp" style="margin-bottom:16px">
+        <option value="CSP">CSP — Multi-year Permit (A2)</option>
+        <option value="CR">CR — Resident Card (B1)</option>
+        <option value="NAT">Naturalization (B2)</option>
+      </select>
+      <button onclick="startApp()" style="width:100%;background:#fff;color:#000;padding:13px 0;border-radius:10px;font-size:15px;font-weight:700">Start Practicing →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== DASHBOARD ====== -->
+<div id="dashPage" class="page hidden">
+  <div class="header">
+    <div class="logo"><span class="r">France Ki Kahani</span> <span class="y">by Mooni</span></div>
+    <span class="sub" id="dashTrack"></span>
+  </div>
+  <div class="mx">
+    <div style="text-align:center;padding:20px 0 16px">
+      <h2 style="font-size:20px;font-weight:800;margin-bottom:4px" id="dashGreet"></h2>
+      <p style="color:#888;font-size:13px" id="dashInfo"></p>
+    </div>
+    <button onclick="startFullExam()" style="width:100%;background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;padding:16px;border-radius:12px;font-size:16px;font-weight:700;margin-bottom:16px;box-shadow:0 4px 24px rgba(220,38,38,0.2);display:flex;align-items:center;justify-content:center;gap:8px">
+      🎯 Full Exam Simulation (40Q • 45 min)
+    </button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
+      <div class="card" onclick="showPage('tlPage')"><span style="font-size:22px">📅</span><br><b style="font-size:13px">Timeline</b><br><span style="font-size:11px;color:#666">Key dates</span></div>
+      <div class="card" onclick="showPage('hkPage')"><span style="font-size:22px">💡</span><br><b style="font-size:13px">Daily Hacks</b><br><span style="font-size:11px;color:#666">Admin tips</span></div>
+    </div>
+    <p class="tag">By Category</p>
+    <div id="catGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:16px"></div>
+  </div>
+</div>
+
+<!-- ====== QUIZ ====== -->
+<div id="quizPage" class="page hidden">
+  <div class="header">
+    <div class="logo" onclick="showPage('dashPage')"><span class="back">←</span> <span class="r">France Ki Kahani</span> <span class="y">by Mooni</span></div>
+    <span class="sub" id="quizTimer"></span>
+  </div>
+  <div class="mx">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span id="quizProgress" style="font-size:12px;font-family:monospace;color:#555"></span>
+      <span id="quizModeLbl" style="font-size:12px;font-family:monospace;color:#555"></span>
+    </div>
+    <div class="bar"><div class="bar-fill" id="quizBar" style="width:0%"></div></div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;margin-bottom:12px">
+      <p id="quizCat" style="font-size:11px;color:#444;font-family:monospace;margin-bottom:6px"></p>
+      <h3 id="quizQ" style="font-size:15px;font-weight:700;line-height:1.5;margin-bottom:3px"></h3>
+      <p id="quizEN" style="font-size:13px;color:#888;font-style:italic;margin-bottom:16px"></p>
+      <div id="quizOpts"></div>
+    </div>
+    <div id="quizExpl" class="hidden" style="border-radius:10px;padding:14px;margin-bottom:12px">
+      <p id="quizExplTitle" style="font-size:13px;font-weight:700;margin-bottom:4px"></p>
+      <p id="quizExplText" style="font-size:12px;color:#bbb;line-height:1.6"></p>
+    </div>
+    <button id="quizNext" class="hidden" onclick="nextQuestion()" style="width:100%;background:#fff;color:#000;padding:12px;border-radius:8px;font-size:14px;font-weight:700">Next →</button>
+  </div>
+</div>
+
+<!-- ====== RESULTS ====== -->
+<div id="resPage" class="page hidden">
+  <div class="header">
+    <div class="logo" onclick="showPage('dashPage')"><span class="back">←</span> <span class="r">France Ki Kahani</span> <span class="y">by Mooni</span></div>
+  </div>
+  <div class="mx" style="text-align:center">
+    <div id="resEmoji" style="font-size:48px;margin-bottom:6px"></div>
+    <h2 id="resTitle" style="font-size:22px;font-weight:800;margin-bottom:4px"></h2>
+    <p id="resSub" style="color:#888;font-size:13px;margin-bottom:20px"></p>
+    <div id="resCircles" style="display:flex;justify-content:center;gap:16px;margin-bottom:20px;flex-wrap:wrap"></div>
+    <div id="resCats" style="text-align:left;margin-bottom:16px"></div>
+    <div style="display:flex;gap:8px;margin-bottom:20px">
+      <button onclick="startFullExam()" style="flex:1;background:#dc2626;color:#fff;padding:12px;border-radius:8px;font-weight:700">Retry</button>
+      <button onclick="showPage('dashPage')" style="flex:1;background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.1);padding:12px;border-radius:8px;font-weight:700">Dashboard</button>
+    </div>
+    <p class="tag" style="text-align:left">All Answers</p>
+    <div id="resAnswers" style="text-align:left;padding-bottom:24px"></div>
+  </div>
+</div>
+
+<!-- ====== TIMELINE ====== -->
+<div id="tlPage" class="page hidden">
+  <div class="header">
+    <div class="logo" onclick="showPage('dashPage')"><span class="back">←</span> <span class="r">France Ki Kahani</span> <span class="y">by Mooni</span></div>
+  </div>
+  <div class="mx">
+    <h2 style="font-size:18px;font-weight:800;margin-bottom:2px">📅 Key Dates</h2>
+    <p style="color:#666;font-size:12px;margin-bottom:14px">These WILL appear on the exam.</p>
+    <div id="tlList" style="padding-left:28px;position:relative">
+      <div style="position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#dc2626,#f59e0b,#10b981)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== HACKS ====== -->
+<div id="hkPage" class="page hidden">
+  <div class="header">
+    <div class="logo" onclick="showPage('dashPage')"><span class="back">←</span> <span class="r">France Ki Kahani</span> <span class="y">by Mooni</span></div>
+  </div>
+  <div class="mx">
+    <h2 style="font-size:18px;font-weight:800;margin-bottom:2px">💡 2026 Survival Hacks</h2>
+    <p style="color:#666;font-size:12px;margin-bottom:14px">Save money, stay legal!</p>
+    <div id="hkList"></div>
+    <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.1);border-radius:10px;padding:12px;text-align:center;margin-top:8px">
+      <p style="font-size:12px;color:#f59e0b;font-style:italic">"Logic clear hai toh residency pakki hai. Aasaan Hai!" 💪</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ====== QUESTION BANK ======
+const Q=[
+{q:"Quelle est la devise de la République française ?",en:"What is the motto of the French Republic?",o:["Paix, Amour, Liberté","Liberté, Égalité, Fraternité","Honneur, Patrie, Valeur","Justice, Ordre, Progrès"],a:1,x:"Liberté, Égalité, Fraternité — har Mairie pe likha hota hai!",c:"Valeurs"},
+{q:"À quoi correspond la date du 14 juillet ?",en:"What does July 14th correspond to?",o:["Fin de la WWI","Prise de la Bastille","Signature de la Constitution","Abolition de l'esclavage"],a:1,x:"Bastille Day 1789! France ka Independence Day!",c:"Valeurs"},
+{q:"A-t-on le droit d'insulter quelqu'un parce qu'il est différent ?",en:"Can you insult someone for being different?",o:["Oui, liberté d'expression","Non, c'est interdit par la loi","Oui, si c'est une blague","Seulement sur internet"],a:1,x:"NO — discrimination and insults are punishable by law!",c:"Valeurs"},
+{q:"Quelle est la langue officielle de la République ?",en:"What is the official language?",o:["L'anglais","Le français","Le latin","Pas de langue officielle"],a:1,x:"French — Article 2. Isliye French seekhna zaroori hai!",c:"Valeurs"},
+{q:"Quelles sont les couleurs du drapeau français ?",en:"Colors of the French flag?",o:["Rouge, blanc, noir","Bleu, blanc, rouge","Vert, blanc, rouge","Bleu, jaune, rouge"],a:1,x:"Bleu, Blanc, Rouge. Blue+Red=Paris, White=monarchy.",c:"Valeurs"},
+{q:"Qu'est-ce que la Marseillaise ?",en:"What is La Marseillaise?",o:["Un monument","L'hymne national","Un musée","Une loi"],a:1,x:"National anthem! Written 1792 during Revolutionary wars.",c:"Valeurs"},
+{q:"Qui est Marianne ?",en:"Who is Marianne?",o:["Une reine","L'allégorie de la République","La première présidente","Une sainte"],a:1,x:"Allegory of the Republic. Her bust is in every Mairie!",c:"Valeurs"},
+{q:"Une personne peut-elle changer de religion ?",en:"Can a person change religion?",o:["Non, c'est interdit","Oui, librement","Avec autorisation","Seulement une fois"],a:1,x:"YES! Freedom of conscience. Koi restriction nahi!",c:"Valeurs"},
+{q:"Quel animal est un symbole de la France ?",en:"What animal symbolizes France?",o:["L'aigle","Le lion","Le coq","Le cheval"],a:2,x:"Le Coq Gaulois — Gallic Rooster!",c:"Valeurs"},
+{q:"Le régime de la France est :",en:"France's regime is:",o:["Monarchie","Dictature","République","Empire"],a:2,x:"A Republic! 5th Republic since 1958.",c:"Valeurs"},
+{q:"Qu'est-ce que la liberté ?",en:"What is liberty?",o:["Faire tout ce qu'on veut","Ce qui ne nuit pas à autrui","Ignorer les lois","Vivre sans règles"],a:1,x:"Doing what doesn't harm others!",c:"Valeurs"},
+{q:"La répudiation de sa femme est :",en:"Repudiation of wife is:",o:["Autorisée","Légale avec accord","Interdite en France","Possible après 10 ans"],a:2,x:"FORBIDDEN. Divorce must go through courts equally.",c:"Valeurs"},
+{q:"Peut-on brûler un drapeau français ?",en:"Can you burn a French flag?",o:["Oui","Non, c'est un délit","Oui, lors de manifs","Le 14 juillet"],a:1,x:"NO — criminal offense!",c:"Valeurs"},
+{q:"En quelle année la loi de séparation Églises/État ?",en:"When was the Church-State separation law?",o:["1789","1848","1905","1958"],a:2,x:"1905! 19-05 = 1 Nation, 9-to-5 Secular, 0 religion in state.",c:"Valeurs"},
+{q:"Quel droit est garanti par la laïcité ?",en:"What right does laïcité guarantee?",o:["Droit au travail","Liberté de conscience et de culte","Droit au logement","Liberté de commerce"],a:1,x:"Freedom of conscience AND worship!",c:"Valeurs"},
+{q:"À l'école publique, qui peut porter des signes religieux visibles ?",en:"Who can wear religious symbols at school?",o:["Enseignants","Élèves","Personne","Parents"],a:2,x:"NOBODY. Public school = neutral space.",c:"Valeurs"},
+{q:"Que dit l'article 1er de la Constitution ?",en:"What does Article 1 say?",o:["Monarchie","République indivisible, laïque, démocratique, sociale","Empire","Fédération"],a:1,x:"4 key words: indivisible, laïque, démocratique, sociale!",c:"Valeurs"},
+{q:"Qui nomme le Premier ministre ?",en:"Who appoints the PM?",o:["Le peuple","Le Président","Le Sénat","L'Assemblée"],a:1,x:"The PRESIDENT appoints the PM. PM is NOT elected!",c:"Institutions"},
+{q:"Le Parlement est composé de :",en:"Parliament is composed of:",o:["Président + Sénat","Assemblée + Sénat","Gouvernement + Sénat","Assemblée + Président"],a:1,x:"Assemblée + Sénat = Parliament. Like Lok Sabha + Rajya Sabha!",c:"Institutions"},
+{q:"Si un ministre ne respecte pas la loi ?",en:"What if a minister breaks the law?",o:["Rien","Jugé comme tout citoyen","Pardonné","Démission"],a:1,x:"Judged like ANY citizen! Nobody above the law.",c:"Institutions"},
+{q:"Combien de députés à l'Assemblée ?",en:"How many deputies?",o:["300","450","577","650"],a:2,x:"577 deputies! Elected for 5 years.",c:"Institutions"},
+{q:"Qui peut voter aux élections ?",en:"Who can vote?",o:["Tous résidents","Citoyens français majeurs","Étrangers avec titre","Tout le monde"],a:1,x:"French citizens 18+ on electoral lists.",c:"Institutions"},
+{q:"Durée du mandat des sénateurs ?",en:"Senator term length?",o:["4 ans","5 ans","6 ans","7 ans"],a:2,x:"6 years! Senate = Six!",c:"Institutions"},
+{q:"Quels sont les trois pouvoirs ?",en:"What are the three powers?",o:["Militaire, religieux, civil","Législatif, exécutif, judiciaire","Présidentiel, royal, populaire","National, régional, local"],a:1,x:"Législatif, Exécutif, Judiciaire!",c:"Institutions"},
+{q:"Le président a-t-il tous les pouvoirs ?",en:"Does the President have all powers?",o:["Oui","Non, pouvoirs séparés","Sauf judiciaire","Militaire seulement"],a:1,x:"NO. Powers are separated!",c:"Institutions"},
+{q:"Qui est le préfet ?",en:"Who is the prefect?",o:["Maire","Représentant de l'État","Juge","Député"],a:1,x:"State's rep in each department. Like District Collector!",c:"Institutions"},
+{q:"Qui dirige la commune ?",en:"Who leads the municipality?",o:["Préfet","Député","Maire","Sénateur"],a:2,x:"Le Maire! Elected for 6 years.",c:"Institutions"},
+{q:"Qu'est-ce que l'Hôtel de Matignon ?",en:"What is Hôtel de Matignon?",o:["Un hôtel","Résidence du PM","Musée","Parlement"],a:1,x:"PM's office! Élysée=President, Matignon=PM.",c:"Institutions"},
+{q:"Combien de régions ?",en:"How many regions?",o:["13","18","22","27"],a:1,x:"18 total (13 metro + 5 overseas).",c:"Institutions"},
+{q:"Depuis quand l'euro ?",en:"Since when is euro used?",o:["1999","2000","2002","2005"],a:2,x:"2002 — replaced the Franc!",c:"Institutions"},
+{q:"Combien de départements ?",en:"How many departments?",o:["96","101","110","89"],a:1,x:"101 departments.",c:"Institutions"},
+{q:"Durée du mandat présidentiel ?",en:"President's term?",o:["4 ans","5 ans","6 ans","7 ans"],a:1,x:"5 years — quinquennat.",c:"Institutions"},
+{q:"Le vote est-il obligatoire ?",en:"Is voting mandatory?",o:["Oui","Non, droit et devoir","Oui, toujours","Hommes seulement"],a:1,x:"NO — right and duty, not mandatory.",c:"Institutions"},
+{q:"Si le Président décède ?",en:"If President dies, who takes over?",o:["Premier Ministre","Président du Sénat","Président Assemblée","Ministre Intérieur"],a:1,x:"President of SENATE — NOT PM! Classic trick!",c:"Institutions"},
+{q:"Quel État a quitté l'UE ?",en:"Which state left EU?",o:["Suisse","Royaume-Uni","Norvège","Islande"],a:1,x:"UK — Brexit!",c:"Institutions"},
+{q:"Journée de l'Europe ?",en:"Europe Day?",o:["1er janvier","8 mars","9 mai","14 juillet"],a:2,x:"May 9!",c:"Institutions"},
+{q:"Pays fondateur de l'UE ?",en:"EU founding country?",o:["Royaume-Uni","France","Pologne","Espagne"],a:1,x:"France! With DE, IT, BE, NL, LU.",c:"Institutions"},
+{q:"La peine de mort est :",en:"Death penalty is:",o:["Autorisée","Abolie depuis 1981","En débat","Rare"],a:1,x:"ABOLISHED 1981! Under Mitterrand.",c:"Droits"},
+{q:"Qu'est-ce que la Constitution ?",en:"What is the Constitution?",o:["Journal","Texte fondamental de l'État","Roman","Contrat"],a:1,x:"Supreme law of France!",c:"Droits"},
+{q:"Est-il possible de divorcer ?",en:"Is divorce possible?",o:["Non","Oui, c'est un droit","Hommes seulement","Autorisation religieuse"],a:1,x:"YES — right for both spouses!",c:"Droits"},
+{q:"L'État peut-il limiter les droits ?",en:"Can the State limit rights?",o:["Jamais","Oui, pour l'intérêt général","Sans raison","Guerre seulement"],a:1,x:"YES — to protect general interest.",c:"Droits"},
+{q:"Victime de violences, que faire ?",en:"Violence victim, what to do?",o:["Rien","Porter plainte","Se venger","Quitter le pays"],a:1,x:"File a complaint! Call 3919.",c:"Droits"},
+{q:"Rôle de la police ?",en:"Police role?",o:["Faire les lois","Maintenir l'ordre","Juger","Impôts"],a:1,x:"Maintain order and protect!",c:"Droits"},
+{q:"Infraction la plus grave ?",en:"Most serious offense?",o:["Contravention","Délit","Crime","Amende"],a:2,x:"Crime > Délit > Contravention.",c:"Droits"},
+{q:"Polygamie légale ?",en:"Is polygamy legal?",o:["Oui","Non, interdite","Avec autorisation","Max 2"],a:1,x:"NO — strictly forbidden!",c:"Droits"},
+{q:"DDHC de quelle année ?",en:"Declaration of Rights year?",o:["1789","1848","1905","1958"],a:0,x:"1789! Foundation of French rights.",c:"Droits"},
+{q:"L'avortement est-il autorisé ?",en:"Is abortion allowed?",o:["Non","Oui, droit constitutionnel","Accord du mari","Raisons médicales"],a:1,x:"YES — constitutional right since 2024!",c:"Droits"},
+{q:"Début de la Révolution française ?",en:"French Revolution start?",o:["1776","1789","1805","1848"],a:1,x:"1789!",c:"Histoire"},
+{q:"Roi exécuté pendant la Révolution ?",en:"Which king was executed?",o:["Louis XIV","Louis XV","Louis XVI","Napoléon"],a:2,x:"Louis XVI — guillotined 1793.",c:"Histoire"},
+{q:"Qui était Napoléon Ier ?",en:"Who was Napoleon I?",o:["Roi","Empereur","Président","Pape"],a:1,x:"An EMPEROR — crowned 1804.",c:"Histoire"},
+{q:"Qu'est-ce que la Shoah ?",en:"What is the Shoah?",o:["Guerre","Génocide des Juifs","Révolution","Traité"],a:1,x:"Genocide of Jews during WWII.",c:"Histoire"},
+{q:"Pays colonisé par la France ?",en:"Country colonized by France?",o:["Japon","Algérie","Brésil","Chine"],a:1,x:"Algeria (1830-1962).",c:"Histoire"},
+{q:"1944 : changement pour les femmes ?",en:"1944 change for women?",o:["Travailler","Droit de vote","Divorcer","Conduire"],a:1,x:"VOTING RIGHTS! Took 155 years!",c:"Histoire"},
+{q:"Esclavage aboli définitivement ?",en:"Slavery abolished?",o:["1789","1848","1905","1944"],a:1,x:"1848 — Victor Schœlcher.",c:"Histoire"},
+{q:"Fondateur de la Ve République ?",en:"5th Republic founder?",o:["Napoléon","De Gaulle","Mitterrand","Chirac"],a:1,x:"De Gaulle in 1958.",c:"Histoire"},
+{q:"Quel fleuve traverse Paris ?",en:"River through Paris?",o:["Rhône","Loire","Seine","Garonne"],a:2,x:"La Seine!",c:"Histoire"},
+{q:"Capitale de la France ?",en:"Capital of France?",o:["Lyon","Marseille","Paris","Strasbourg"],a:2,x:"Paris!",c:"Histoire"},
+{q:"Montagnes France-Espagne ?",en:"Mountains France-Spain?",o:["Alpes","Pyrénées","Jura","Vosges"],a:1,x:"Les Pyrénées!",c:"Histoire"},
+{q:"Qui était Molière ?",en:"Who was Molière?",o:["Roi","Peintre","Écrivain/dramaturge","Général"],a:2,x:"France's Shakespeare!",c:"Histoire"},
+{q:"Qu'est-ce que le Louvre ?",en:"What is the Louvre?",o:["Restaurant","Musée","Stade","Église"],a:1,x:"World's largest art museum!",c:"Histoire"},
+{q:"Peine supprimée en 1981 ?",en:"Abolished in 1981?",o:["Prison","Amende","Peine de mort","Travail forcé"],a:2,x:"DEATH PENALTY.",c:"Histoire"},
+{q:"Population France ?",en:"France population?",o:["50M","60M","68M","80M"],a:2,x:"About 68 million!",c:"Histoire"},
+{q:"Surnom de Louis XIV ?",en:"Louis XIV nickname?",o:["Roi Soleil","Roi Guerrier","Bon Roi","Roi Sage"],a:0,x:"Le Roi Soleil — Sun King!",c:"Histoire"},
+{q:"Mariage reconnu par l'État ?",en:"State-recognized marriage?",o:["Religieux","Civil","Traditionnel","Tous"],a:1,x:"Only CIVIL marriage at Mairie!",c:"Société"},
+{q:"Numéro du SAMU ?",en:"SAMU number?",o:["17","15","18","112"],a:1,x:"15=SAMU, 17=Police, 18=Pompiers.",c:"Société"},
+{q:"Numéro de la police ?",en:"Police number?",o:["15","17","18","112"],a:1,x:"17!",c:"Société"},
+{q:"Durée légale du travail ?",en:"Legal weekly hours?",o:["30h","35h","39h","40h"],a:1,x:"35 hours!",c:"Société"},
+{q:"Qu'est-ce que le SMIC ?",en:"What is SMIC?",o:["Impôt","Salaire minimum","Aide","Examen"],a:1,x:"Minimum wage!",c:"Société"},
+{q:"Première démarche emploi ?",en:"First job search step?",o:["Commissariat","France Travail","SAMU","Mairie"],a:1,x:"Register with France Travail!",c:"Société"},
+{q:"Une femme peut créer une entreprise ?",en:"Can a woman start a business?",o:["Non","Oui, librement","Accord du mari","Certains secteurs"],a:1,x:"YES, freely!",c:"Société"},
+{q:"Accès aux soins ?",en:"Healthcare access?",o:["Français seulement","Tous résidant en France","Salariés","Riches"],a:1,x:"EVERYONE in France!",c:"Société"},
+{q:"Carte Vitale sert à ?",en:"Carte Vitale is for?",o:["Voter","Remboursement soins","Voyager","Conduire"],a:1,x:"Healthcare reimbursements!",c:"Société"},
+{q:"Instruction obligatoire dès ?",en:"Mandatory education from?",o:["3 ans","5 ans","6 ans","7 ans"],a:0,x:"3 years old!",c:"Société"},
+{q:"Âge de la majorité ?",en:"Age of majority?",o:["16","18","20","21"],a:1,x:"18! Vote, contracts, marry.",c:"Société"},
+{q:"Déclarer une naissance où ?",en:"Where to declare birth?",o:["Hôpital","Mairie","Préfecture","Police"],a:1,x:"At the MAIRIE! Within 5 days.",c:"Société"},
+{q:"Travail non déclaré est :",en:"Undeclared work is:",o:["Normal","Interdit","Autorisé étrangers","Accepté"],a:1,x:"ILLEGAL!",c:"Société"},
+{q:"Diplôme fin du lycée ?",en:"High school diploma?",o:["Brevet","Baccalauréat","Licence","Master"],a:1,x:"Le Bac!",c:"Société"},
+];
+
+const CATS={Valeurs:"Principes & Valeurs",Institutions:"Institutions & Politique",Droits:"Droits & Devoirs",Histoire:"Histoire & Culture",Société:"Vie en Société"};
+const CICONS={Valeurs:"🇫🇷",Institutions:"🏛️",Droits:"⚖️",Histoire:"📚",Société:"🏠"};
+const TL=[[1789,"Revolution / Bastille","🔥"],[1789,"Declaration of Rights","📜"],[1848,"Slavery abolished","⛓️"],[1882,"Free mandatory school","🏫"],[1905,"Laïcité law","⚖️"],[1914,"WWI begins","💣"],[1940,"De Gaulle's call","📻"],[1944,"Women vote","🗳️"],[1945,"WWII ends","🕊️"],[1958,"5th Republic","🏛️"],[1975,"Abortion (Veil)","⚕️"],[1981,"Death penalty abolished","🕊️"],[2002,"Euro","💶"],[2024,"Immigration law","📋"],[2026,"Civic Exam begins","✅"]];
+const HK=[["💼","France Travail","Register IMMEDIATELY for job search or unemployment!"],["🚇","Navigo 2026","€90.80/month. Employer pays 50%. On RSA? Get up to 100% off!"],["🏠","APL Alert","July 2026: non-EU students lose APL. Apply BEFORE!"],["📜","Naturalization","Stamp: €55→€255! File ASAP."],["🏥","Carte Vitale","Get Sécu number immediately!"],["🚨","Emergency","15=SAMU 17=Police 18=Pompiers 112=EU 3919=Violence"],["✅","Exam","40 MCQ, 45 min, need 80%. Aasaan Hai!"]];
+
+// ====== STATE ======
+let user=null, quizQs=[], quizIdx=0, quizSel=null, quizResults=[], quizMode="full", timerOn=false, timerVal=2700, timerInterval=null;
+
+// ====== HELPERS ======
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=0|Math.random()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
+function $(id){return document.getElementById(id);}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));$(id).classList.remove('hidden');window.scrollTo(0,0);}
+
+// ====== GATE ======
+function openYT(){
+  window.open("https://www.youtube.com/@francekikahanibymooni","_blank");
+  $('gateStep1').classList.add('hidden');
+  $('gateStep2').classList.remove('hidden');
+}
+function showStep3(){
+  $('gateStep2').classList.add('hidden');
+  $('gateStep3').classList.remove('hidden');
+}
+function startApp(){
+  const n=$('regName').value.trim(),e=$('regEmail').value.trim(),t=$('regTrack').value;
+  if(!n||!e){alert('Please fill in your name and email!');return;}
+  user={name:n,email:e,track:t};
+  buildDashboard();
+  showPage('dashPage');
+}
+
+// ====== DASHBOARD ======
+function buildDashboard(){
+  $('dashGreet').textContent='Namaste, '+user.name+'! 🙏';
+  $('dashTrack').textContent=user.track+' Track';
+  $('dashInfo').textContent=Q.length+' questions • 40 per exam • Need 80%';
+  const grid=$('catGrid');grid.innerHTML='';
+  Object.keys(CATS).forEach(c=>{
+    const n=Q.filter(q=>q.c===c).length;
+    const d=document.createElement('div');d.className='card';
+    d.innerHTML='<span style="font-size:20px">'+CICONS[c]+'</span><br><b style="font-size:12px">'+CATS[c]+'</b><br><span style="font-size:11px;color:#666">'+n+'Q</span>';
+    d.onclick=()=>startCategoryQuiz(c);
+    grid.appendChild(d);
+  });
+  buildTimeline();buildHacks();
+}
+function buildTimeline(){
+  const list=$('tlList');
+  TL.forEach(t=>{
+    const d=document.createElement('div');d.style.cssText='position:relative;margin-bottom:10px';
+    d.innerHTML='<div style="position:absolute;left:-24px;top:2px;width:14px;height:14px;border-radius:50%;background:#050505;border:2px solid #f59e0b;display:flex;align-items:center;justify-content:center;font-size:7px">'+t[2]+'</div><div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:7px 10px;display:flex;align-items:center;gap:8px"><span style="font-family:monospace;font-size:14px;font-weight:800;color:#f59e0b;min-width:36px">'+t[0]+'</span><span style="font-size:12px;color:#ccc">'+t[1]+'</span></div>';
+    list.appendChild(d);
+  });
+}
+function buildHacks(){
+  const list=$('hkList');
+  HK.forEach(h=>{
+    const d=document.createElement('div');
+    d.style.cssText='background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px;margin-bottom:8px';
+    d.innerHTML='<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:20px">'+h[0]+'</span><b style="font-size:13px">'+h[1]+'</b></div><p style="font-size:12px;color:#999;line-height:1.6">'+h[2]+'</p>';
+    list.appendChild(d);
+  });
+}
+
+// ====== QUIZ ======
+function startFullExam(){
+  quizQs=shuffle(Q).slice(0,40);quizMode="full";timerOn=true;timerVal=2700;
+  startQuiz();
+}
+function startCategoryQuiz(cat){
+  quizQs=shuffle(Q.filter(q=>q.c===cat));quizMode=cat;timerOn=false;
+  if(!quizQs.length)return;
+  startQuiz();
+}
+function startQuiz(){
+  quizIdx=0;quizSel=null;quizResults=[];
+  clearInterval(timerInterval);
+  if(timerOn){timerVal=2700;timerInterval=setInterval(tickTimer,1000);}
+  showPage('quizPage');
+  renderQuestion();
+}
+function tickTimer(){
+  timerVal--;
+  if(timerVal<=0){clearInterval(timerInterval);finishQuiz();return;}
+  const m=String(Math.floor(timerVal/60)).padStart(2,'0');
+  const s=String(timerVal%60).padStart(2,'0');
+  $('quizTimer').textContent='⏱ '+m+':'+s;
+  $('quizTimer').style.color=timerVal<300?'#dc2626':'#f59e0b';
+}
+function renderQuestion(){
+  const q=quizQs[quizIdx],tot=quizQs.length;
+  $('quizProgress').textContent='Q'+(quizIdx+1)+'/'+tot;
+  $('quizModeLbl').textContent=quizMode==='full'?'EXAM':CATS[quizMode]||quizMode;
+  $('quizBar').style.width=(quizIdx/tot*100)+'%';
+  $('quizCat').textContent=CATS[q.c]||q.c;
+  $('quizQ').textContent=q.q;
+  $('quizEN').textContent=q.en;
+  if(timerOn){
+    const m=String(Math.floor(timerVal/60)).padStart(2,'0');
+    const s=String(timerVal%60).padStart(2,'0');
+    $('quizTimer').textContent='⏱ '+m+':'+s;
+  }else{$('quizTimer').textContent='';}
+  
+  const opts=$('quizOpts');opts.innerHTML='';
+  q.o.forEach((o,i)=>{
+    const b=document.createElement('button');b.className='opt-btn';
+    b.innerHTML='<span class="opt-letter">'+String.fromCharCode(65+i)+'</span>'+o;
+    b.onclick=()=>pickAnswer(i);
+    opts.appendChild(b);
+  });
+  $('quizExpl').classList.add('hidden');
+  $('quizNext').classList.add('hidden');
+  quizSel=null;
+}
+function pickAnswer(i){
+  if(quizSel!==null)return;
+  quizSel=i;
+  const q=quizQs[quizIdx];
+  const ok=i===q.a;
+  quizResults.push({...q,pick:i,ok});
+  
+  const btns=$('quizOpts').children;
+  for(let j=0;j<btns.length;j++){
+    btns[j].disabled=true;
+    if(j===q.a)btns[j].classList.add('correct');
+    else if(j===i&&!ok)btns[j].classList.add('wrong');
+    const letter=btns[j].querySelector('.opt-letter');
+    if(j===q.a)letter.textContent='✓';
+    else if(j===i&&!ok)letter.textContent='✗';
+  }
+  
+  const expl=$('quizExpl');expl.classList.remove('hidden');
+  expl.style.background=ok?'rgba(16,185,129,0.08)':'rgba(220,38,38,0.08)';
+  expl.style.border='1px solid '+(ok?'rgba(16,185,129,0.2)':'rgba(220,38,38,0.2)');
+  $('quizExplTitle').textContent=ok?'✅ Correct! Bahut Badhiya!':'❌ Galat — Seekho!';
+  $('quizExplTitle').style.color=ok?'#10b981':'#dc2626';
+  $('quizExplText').textContent=q.x;
+  
+  const nb=$('quizNext');nb.classList.remove('hidden');
+  nb.textContent=(quizIdx+1>=quizQs.length)?'See Results →':'Next →';
+}
+function nextQuestion(){
+  if(quizIdx+1>=quizQs.length){finishQuiz();return;}
+  quizIdx++;renderQuestion();
+}
+function finishQuiz(){
+  clearInterval(timerInterval);
+  showResults();
+}
+
+// ====== RESULTS ======
+function showResults(){
+  showPage('resPage');
+  const ok=quizResults.filter(r=>r.ok).length,tot=quizResults.length;
+  const pct=tot?Math.round(ok/tot*100):0,pass=pct>=80;
+  
+  $('resEmoji').textContent=pass?'🎉':'💪';
+  $('resTitle').textContent=pass?'Passed! Aasaan Hai!':'Keep Practicing!';
+  $('resSub').textContent=pass?'Ready for 2026!':'Need 80% — focus on weak areas.';
+  
+  $('resCircles').innerHTML=[
+    {l:'Score',v:pct+'%',c:pass?'#10b981':'#dc2626'},
+    {l:'Correct',v:ok+'/'+tot,c:'#f59e0b'},
+    {l:'Result',v:pass?'PASS':'FAIL',c:pass?'#10b981':'#dc2626'}
+  ].map(s=>'<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div class="circle" style="border:3px solid '+s.c+';color:'+s.c+'">'+s.v+'</div><span style="font-size:11px;color:#666">'+s.l+'</span></div>').join('');
+  
+  const byC={};quizResults.forEach(r=>{if(!byC[r.c])byC[r.c]={t:0,o:0};byC[r.c].t++;if(r.ok)byC[r.c].o++;});
+  $('resCats').innerHTML=Object.entries(byC).map(([c,v])=>{
+    const p=Math.round(v.o/v.t*100),w=p<70;
+    return '<div style="background:rgba(255,255,255,0.03);border:1px solid '+(w?'rgba(220,38,38,0.2)':'rgba(255,255,255,0.06)')+';border-radius:8px;padding:8px 12px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:600">'+(CATS[c]||c)+(w?' ⚠️':'')+'</span><div style="display:flex;align-items:center;gap:6px"><div style="width:50px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:'+p+'%;background:'+(w?'#dc2626':'#10b981')+'"></div></div><span style="font-size:11px;font-weight:700;color:'+(w?'#dc2626':'#10b981')+';font-family:monospace">'+p+'%</span></div></div>';
+  }).join('');
+  
+  $('resAnswers').innerHTML=quizResults.map((r,i)=>{
+    let html='<div style="background:rgba(255,255,255,0.02);border:1px solid '+(r.ok?'rgba(16,185,129,0.1)':'rgba(220,38,38,0.1)')+';border-radius:6px;padding:6px 10px;margin-bottom:4px">';
+    html+='<div style="display:flex;justify-content:space-between"><span style="font-size:10px;color:#444">Q'+(i+1)+'</span><span style="font-size:10px;font-weight:700;color:'+(r.ok?'#10b981':'#dc2626')+'">'+(r.ok?'✓':'✗')+'</span></div>';
+    html+='<p style="font-size:12px;font-weight:600;margin:2px 0">'+r.en+'</p>';
+    if(!r.ok)html+='<p style="font-size:11px;color:#777">You: <span style="color:#dc2626">'+r.o[r.pick]+'</span> → <span style="color:#10b981">'+r.o[r.a]+'</span></p>';
+    html+='</div>';return html;
+  }).join('');
+}
+
+// ====== INIT ======
+$('qcount').textContent=Q.length+'+';
+</script>
