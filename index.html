@@ -105,9 +105,13 @@ input,select{font-family:inherit}
       <h2 style="font-size:20px;font-weight:800;margin-bottom:4px" id="dashGreet"></h2>
       <p style="color:#888;font-size:13px" id="dashInfo"></p>
     </div>
-    <button onclick="startFullExam()" style="width:100%;background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;padding:16px;border-radius:12px;font-size:16px;font-weight:700;margin-bottom:16px;box-shadow:0 4px 24px rgba(220,38,38,0.2);display:flex;align-items:center;justify-content:center;gap:8px">
+    <button onclick="startFullExam()" style="width:100%;background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;padding:16px;border-radius:12px;font-size:16px;font-weight:700;margin-bottom:10px;box-shadow:0 4px 24px rgba(220,38,38,0.2);display:flex;align-items:center;justify-content:center;gap:8px">
       🎯 Full Exam Simulation (40Q • 45 min)
     </button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+      <button onclick="startRemediation('vocab')" style="background:rgba(245,158,11,0.08);color:#fff;border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:16px 12px;font-size:14px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:6px;line-height:1.3;transition:border-color 0.2s" onmouseover="this.style.borderColor='rgba(245,158,11,0.7)'" onmouseout="this.style.borderColor='rgba(245,158,11,0.3)'"><span style="font-size:26px">📖</span>Practice Vocabulary<span style="font-size:11px;font-weight:400;color:#f59e0b">22 Questions</span></button>
+      <button onclick="startRemediation('history')" style="background:rgba(16,185,129,0.08);color:#fff;border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:16px 12px;font-size:14px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:6px;line-height:1.3;transition:border-color 0.2s" onmouseover="this.style.borderColor='rgba(16,185,129,0.7)'" onmouseout="this.style.borderColor='rgba(16,185,129,0.3)'"><span style="font-size:26px">⏳</span>History & Dates<span style="font-size:11px;font-weight:400;color:#10b981">23 Questions</span></button>
+    </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
       <div class="card" onclick="showPage('tlPage')"><span style="font-size:22px">📅</span><br><b style="font-size:13px">Timeline</b><br><span style="font-size:11px;color:#666">Key dates</span></div>
       <div class="card" onclick="showPage('hkPage')"><span style="font-size:22px">💡</span><br><b style="font-size:13px">Daily Hacks</b><br><span style="font-size:11px;color:#666">Admin tips</span></div>
@@ -162,11 +166,12 @@ input,select{font-family:inherit}
     <div id="resAnswers" style="text-align:left;padding-bottom:24px"></div>
 
     <!-- Remediation diagnostic — shown only on fail -->
-    <div id="resDiagnostic" class="hidden" style="text-align:left;padding-bottom:24px;border-top:1px solid rgba(255,255,255,0.07);padding-top:16px">
-      <p class="tag" style="margin-bottom:8px">Targeted Remediation</p>
-      <p style="font-size:13px;color:#888;margin-bottom:12px">What is your main challenge while studying?</p>
-      <button onclick="startRemediation('vocab')" style="width:100%;background:rgba(255,255,255,0.04);color:#fff;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:13px;font-weight:600;text-align:left;margin-bottom:8px;transition:border-color 0.2s" onmouseover="this.style.borderColor='rgba(245,158,11,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'">💬 I struggle with complex French vocabulary &amp; terminology</button>
-      <button onclick="startRemediation('history')" style="width:100%;background:rgba(255,255,255,0.04);color:#fff;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:13px;font-weight:600;text-align:left;transition:border-color 0.2s" onmouseover="this.style.borderColor='rgba(245,158,11,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'">📅 I struggle with historical dates, figures &amp; timelines</button>
+    <div id="resDiagnostic" class="hidden" style="text-align:left;padding-bottom:28px;border-top:2px solid rgba(220,38,38,0.25);padding-top:20px;margin-top:8px">
+      <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:monospace;font-weight:700;color:#dc2626;margin-bottom:6px">⚡ Boost Your Score</p>
+      <p style="font-size:15px;font-weight:700;margin-bottom:4px">Target your weak spots</p>
+      <p style="font-size:13px;color:#888;margin-bottom:16px">Pick a practice mode to strengthen the area where you struggled most.</p>
+      <button onclick="startRemediation('vocab')" style="width:100%;background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(245,158,11,0.04));color:#fff;border:2px solid rgba(245,158,11,0.4);border-radius:12px;padding:18px 16px;font-size:15px;font-weight:700;text-align:left;margin-bottom:10px;display:flex;align-items:center;gap:14px;transition:border-color 0.2s" onmouseover="this.style.borderColor='rgba(245,158,11,0.8)'" onmouseout="this.style.borderColor='rgba(245,158,11,0.4)'"><span style="font-size:32px;flex-shrink:0">📖</span><span><span style="display:block;font-size:16px">Practice Vocabulary</span><span style="font-size:12px;font-weight:400;color:#f59e0b">22 questions • Complex French terms &amp; concepts</span></span></button>
+      <button onclick="startRemediation('history')" style="width:100%;background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04));color:#fff;border:2px solid rgba(16,185,129,0.4);border-radius:12px;padding:18px 16px;font-size:15px;font-weight:700;text-align:left;display:flex;align-items:center;gap:14px;transition:border-color 0.2s" onmouseover="this.style.borderColor='rgba(16,185,129,0.8)'" onmouseout="this.style.borderColor='rgba(16,185,129,0.4)'"><span style="font-size:32px;flex-shrink:0">⏳</span><span><span style="display:block;font-size:16px">Practice History &amp; Dates</span><span style="font-size:12px;font-weight:400;color:#10b981">23 questions • Key dates, figures &amp; timelines</span></span></button>
     </div>
   </div>
 </div>
@@ -330,6 +335,7 @@ function showStep3(){
 function startApp(){
   const n=$('regName').value.trim(),e=$('regEmail').value.trim(),t=$('regTrack').value;
   if(!n||!e){alert('Please fill in your name and email!');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){alert('Please enter a valid email address (e.g. name@example.com)');return;}
   user={name:n,email:e,track:t};
   buildDashboard();
   showPage('dashPage');
@@ -492,23 +498,60 @@ function showResults(){
 // ====== REMEDIATION DATA ======
 const remediationData={
   vocab:{
-    title:"💬 Remediation: Vocabulary & Terminology",
-    tips:"<strong>Pedagogical Tip — Linguistic Retention:</strong><br><br>Do not memorize French administrative words in isolation — this causes rapid memory decay. Instead, use <strong>Semantic Word Networking</strong>: place each word in a sentence you invent. For complex terms, use the <strong>Keyword Method</strong>. To remember <em>Mairie</em> (Town Hall), imagine a woman named 'Mary' standing in front of a giant town hall. Connect the sound of the word to a vivid visual image so the meaning sticks.",
+    title:"📖 Vocabulary Practice — 22 Questions",
+    tips:"💡 <strong>Tip:</strong> Don't memorize words in isolation. Link them to concepts! 'Laïcité' means the state is neutral. 'Fraternité' means solidarity.",
     questions:[
-      {q:"Que signifie le mot 'Laïcité' dans le contexte de l'État?",o:["La séparation stricte de l'Église et de l'État","L'obligation légale de voter","Le droit inaliénable au travail","La liberté totale de la presse"],a:0},
-      {q:"Qu'est-ce qu'une 'Infraction'?",o:["Une aide financière de l'État","Une violation de la loi","Un contrat de travail","Un diplôme universitaire"],a:1},
-      {q:"Que signifie 'Laïque' dans la devise constitutionnelle?",o:["Religieux","Neutre vis-à-vis de la religion","Obligatoirement athée","Chrétien"],a:1},
-      {q:"Qu'est-ce que le 'Suffrage universel'?",o:["Un impôt","Le droit de vote pour tous les adultes","Une loi sur la presse","Un traité européen"],a:1}
+      {question:"Que signifie le mot 'Laïcité' ?",options:["Obligation religieuse","Séparation de l'Église et de l'État","Droit de vote","Liberté de presse"],correct:1},
+      {question:"Que signifie 'Fraternité' dans la devise ?",options:["Solidarité entre citoyens","Richesse","Force militaire","Éducation gratuite"],correct:0},
+      {question:"Qu'est-ce qu'une 'République Indivisible' ?",options:["Lois différentes par région","Une seule loi pour tous","Séparée en États","Dirigée par un roi"],correct:1},
+      {question:"Que veut dire 'Démocratie' ?",options:["Pouvoir au roi","Pouvoir au peuple","Pouvoir aux riches","Pouvoir militaire"],correct:1},
+      {question:"Qu'est-ce que le 'Suffrage Universel' ?",options:["Seuls les hommes votent","Tous les citoyens majeurs votent","Seuls les riches votent","Vote obligatoire"],correct:1},
+      {question:"Que signifie 'Naturalisation' ?",options:["Protéger la nature","Acquérir la nationalité française","Payer ses impôts","Aller à l'école"],correct:1},
+      {question:"Qu'est-ce qu'une 'Constitution' ?",options:["Un poème","La loi suprême de l'État","Un tribunal","Un parti politique"],correct:1},
+      {question:"Que signifie 'Assimilation' ?",options:["Adopter les valeurs de la République","Garder ses lois d'origine","Rejeter la culture","Parler plusieurs langues"],correct:0},
+      {question:"Qu'est-ce que le 'Pouvoir Exécutif' ?",options:["Faire les lois","Appliquer les lois","Juger les crimes","Voter les impôts"],correct:1},
+      {question:"Qu'est-ce que le 'Pouvoir Législatif' ?",options:["Appliquer les lois","Voter les lois","Diriger la police","Gérer les mairies"],correct:1},
+      {question:"Qu'est-ce que le 'Pouvoir Judiciaire' ?",options:["Rendre la justice","Écrire les lois","Gouverner le pays","Élire le président"],correct:0},
+      {question:"Que représente 'Marianne' ?",options:["Une reine","L'allégorie de la République","Une sainte","Une actrice"],correct:1},
+      {question:"Qu'est-ce que 'L'Hymne National' ?",options:["Le drapeau","La Marseillaise","La devise","Le Panthéon"],correct:1},
+      {question:"Que signifie 'Liberté de conscience' ?",options:["Droit de dire n'importe quoi","Droit de croire ou non","Droit de voler","Droit de ne pas payer d'impôts"],correct:1},
+      {question:"Qui est le 'Préfet' ?",options:["Chef de la police","Représentant de l'État dans le département","Maire de Paris","Juge suprême"],correct:1},
+      {question:"Que fait le 'Maire' ?",options:["Dirige le pays","Gère la commune/ville","Vote les lois nationales","Gère l'armée"],correct:1},
+      {question:"Qu'est-ce qu'un 'Délit' ?",options:["Une petite amende","Une infraction grave à la loi","Un droit","Un devoir"],correct:1},
+      {question:"Que signifie 'Égalité' ?",options:["Mêmes droits pour tous","Même salaire pour tous","Même religion","Même maison"],correct:0},
+      {question:"Qu'est-ce qu'un 'Syndicat' ?",options:["Un tribunal","Défense des droits des travailleurs","Un parti politique","Une école"],correct:1},
+      {question:"Qu'est-ce qu'un 'Contrat de Travail' ?",options:["Un accord oral","Document légal entre employeur et employé","Une taxe","Un diplôme"],correct:1},
+      {question:"Que signifie 'Laïcité à l'école' ?",options:["Pas de religion à l'école","Pas de signes religieux ostentatoires","Obligation de prier","Cours de religion"],correct:1},
+      {question:"Qu'est-ce que l'Impôt ?",options:["Un don volontaire","Contribution obligatoire aux dépenses publiques","Une amende","Un salaire"],correct:1}
     ]
   },
   history:{
-    title:"📅 Remediation: Historical Dates & Figures",
-    tips:"<strong>Pedagogical Tip — Chronological Anchoring:</strong><br><br>The brain struggles with abstract numbers. To memorize historical dates, use the <strong>Method of Loci (Memory Palace)</strong>: imagine walking through your home and place each event in a specific room. Place 'The French Revolution' in your kitchen in 1789. For dates, use <strong>Chronological Chunking</strong>: split 1789 into '17' (the century) and '89' (the year within it), then link each chunk to a vivid image or fact you already know.",
+    title:"⏳ History & Dates Practice — 23 Questions",
+    tips:"💡 <strong>Tip:</strong> Chunk dates! 1789 = 17 and 89. Associate major events: 1905 is Church/State separation, 1958 is the modern Republic.",
     questions:[
-      {q:"En quelle année a débuté la Révolution française?",o:["1776","1789","1804","1848"],a:1},
-      {q:"De quand date la Constitution de la Ve République?",o:["1789","1905","1958","1981"],a:2},
-      {q:"En quelle année les femmes ont-elles obtenu le droit de vote en France?",o:["1905","1936","1944","1968"],a:2},
-      {q:"En quelle année la peine de mort a-t-elle été abolie?",o:["1958","1968","1975","1981"],a:3}
+      {question:"En quelle année a eu lieu la Révolution Française ?",options:["1492","1789","1804","1914"],correct:1},
+      {question:"Que s'est-il passé le 14 Juillet 1789 ?",options:["Fin de la guerre","Prise de la Bastille","Mort du Roi","Création de l'Euro"],correct:1},
+      {question:"De quand date la loi de séparation des Églises et de l'État ?",options:["1789","1848","1905","1958"],correct:2},
+      {question:"Quand les femmes ont-elles obtenu le droit de vote ?",options:["1789","1905","1944","1968"],correct:2},
+      {question:"Quelle année marque le début de la Ve (5ème) République ?",options:["1945","1958","1981","2000"],correct:1},
+      {question:"Quand la peine de mort a-t-elle été abolie ?",options:["1789","1945","1981","2002"],correct:2},
+      {question:"Dates de la Première Guerre Mondiale ?",options:["1870-1871","1914-1918","1939-1945","1954-1962"],correct:1},
+      {question:"Dates de la Seconde Guerre Mondiale ?",options:["1914-1918","1939-1945","1954-1962","1990-1995"],correct:1},
+      {question:"En quelle année l'esclavage a-t-il été définitivement aboli ?",options:["1789","1848","1905","1944"],correct:1},
+      {question:"Qui a été couronné Empereur en 1804 ?",options:["Louis XIV","Charlemagne","Napoléon Bonaparte","Clovis"],correct:2},
+      {question:"Qui a fait l'Appel du 18 juin 1940 ?",options:["Napoléon","Charles de Gaulle","Jean Moulin","François Mitterrand"],correct:1},
+      {question:"Depuis quelle année utilise-t-on l'Euro ?",options:["1992","1999","2002","2010"],correct:2},
+      {question:"Quelles lois ont rendu l'école gratuite et obligatoire (1881-1882) ?",options:["Lois Veil","Lois Ferry","Lois Macron","Lois de Gaulle"],correct:1},
+      {question:"Qui était le Roi Soleil ?",options:["Clovis","Charlemagne","Henri IV","Louis XIV"],correct:3},
+      {question:"Quelle héroïne a aidé le roi Charles VII en 1429 ?",options:["Marie Curie","Jeanne d'Arc","Simone Veil","Marianne"],correct:1},
+      {question:"Qui a unifié les Francs et s'est fait baptiser vers 496 ?",options:["Charlemagne","Clovis","Vercingétorix","Louis XVI"],correct:1},
+      {question:"Quel grand écrivain a écrit 'Les Misérables' ?",options:["Molière","Victor Hugo","Voltaire","Rousseau"],correct:1},
+      {question:"Qui est Jean Moulin ?",options:["Un roi","Héros de la Résistance (WWII)","Un poète","Un scientifique"],correct:1},
+      {question:"Qui a fait voter la loi autorisant l'IVG en 1975 ?",options:["Marie Curie","Simone Veil","Jeanne d'Arc","Olympe de Gouges"],correct:1},
+      {question:"Quand a eu lieu la Déclaration des droits de l'homme et du citoyen ?",options:["1789","1848","1905","1958"],correct:0},
+      {question:"Quel roi a été guillotiné en 1793 ?",options:["Louis XIV","Louis XV","Louis XVI","Henri IV"],correct:2},
+      {question:"Qui a signé l'Édit de Nantes (liberté de religion) en 1598 ?",options:["Charlemagne","Henri IV","Napoléon","Louis XIV"],correct:1},
+      {question:"En quelle année s'est terminée la guerre d'Algérie ?",options:["1918","1945","1962","1981"],correct:2}
     ]
   }
 };
@@ -535,17 +578,17 @@ function renderRemQuestion(){
     return;
   }
   const q=activeRem[remIdx];
-  $('remQ').textContent='Q'+(remIdx+1)+'/'+activeRem.length+': '+q.q;
+  $('remQ').textContent='Q'+(remIdx+1)+'/'+activeRem.length+': '+q.question;
   $('remNext').classList.add('hidden');
   const opts=$('remOpts');opts.innerHTML='';
-  q.o.forEach((o,i)=>{
+  q.options.forEach((o,i)=>{
     const b=document.createElement('button');b.className='opt-btn';
     b.innerHTML='<span class="opt-letter">'+String.fromCharCode(65+i)+'</span>'+o;
     b.onclick=()=>{
       const btns=opts.querySelectorAll('.opt-btn');
       btns.forEach(x=>x.disabled=true);
-      if(i===q.a)b.classList.add('correct');
-      else{b.classList.add('wrong');btns[q.a].classList.add('correct');}
+      if(i===q.correct)b.classList.add('correct');
+      else{b.classList.add('wrong');btns[q.correct].classList.add('correct');}
       $('remNext').classList.remove('hidden');
     };
     opts.appendChild(b);
