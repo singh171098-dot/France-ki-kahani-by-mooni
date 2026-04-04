@@ -41,56 +41,63 @@ input,select{font-family:inherit}
 </head>
 <body>
 
-<!-- ====== SUBSCRIBE GATE ====== -->
-<div id="gatePage" class="page" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#050505,#1a0505,#050505);position:relative;overflow:hidden">
+<!-- ====== LOADING ====== -->
+<div id="loadPage" class="page" style="display:flex;align-items:center;justify-content:center;background:#050505;min-height:100vh">
+  <div style="text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">🇫🇷</div>
+    <p style="color:#333;font-size:12px;font-family:monospace;letter-spacing:2px">LOADING...</p>
+  </div>
+</div>
+
+<!-- ====== AUTH GATE ====== -->
+<div id="gatePage" class="page hidden" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#050505,#1a0505,#050505);position:relative;overflow:hidden">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(220,38,38,0.1) 0%,transparent 50%);pointer-events:none"></div>
   <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#dc2626,#f59e0b,#dc2626,transparent)"></div>
   <div style="max-width:480px;width:100%;text-align:center;position:relative;z-index:1;padding:16px">
     <div style="font-size:64px;margin-bottom:12px">🇫🇷</div>
     <h1 style="font-family:Georgia,serif;font-size:clamp(1.6rem,5vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:6px">
-      France Ki <span style="background:linear-gradient(135deg,#dc2626,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Kahani</span> <span style="font-size:0.5em;color:#999;font-weight:400">by Mooni</span>
+      France Ki <span style="background:linear-gradient(135deg,#dc2626,#f59e0b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Kahani</span> <span style="font-size:0.5em;color:#999;font-weight:400">by Mooni</span>
     </h1>
     <p style="color:#f59e0b;font-family:monospace;font-size:11px;letter-spacing:3px;margin-bottom:16px">FRANCE KI KAHANI BY MOONI • EXAMEN CIVIQUE 2026</p>
-    <p style="color:#999;font-size:14px;line-height:1.7;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto">
+    <p style="color:#999;font-size:14px;line-height:1.7;margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto">
       Practice <b style="color:#fff" id="qcount"></b> official questions. Pass with <b style="color:#dc2626">80%</b>. Secure your CSP / CR / Naturalization.
     </p>
-    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
-      <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:4px 10px;font-size:11px;color:#aaa">🌐 Bilingual</span>
-      <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:4px 10px;font-size:11px;color:#aaa">⏱️ Timer</span>
-      <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:4px 10px;font-size:11px;color:#aaa">🔍 Analysis</span>
-      <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:4px 10px;font-size:11px;color:#aaa">🇮🇳 Hindi+EN</span>
-    </div>
 
-    <!-- Step 1: Subscribe -->
-    <div id="gateStep1">
-      <button onclick="openYT()" style="background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;padding:16px 40px;border-radius:50px;font-size:16px;font-weight:700;box-shadow:0 0 30px rgba(220,38,38,0.25)">
-        ▶ Subscribe on YouTube to Unlock
-      </button>
-      <p style="color:#444;font-size:11px;margin-top:12px">Free access after subscribing</p>
-    </div>
-
-    <!-- Step 2: Confirm -->
-    <div id="gateStep2" class="hidden fade-up">
-      <p style="color:#10b981;font-weight:600;margin-bottom:12px">✅ Did you subscribe?</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-        <button onclick="showStep3()" style="background:#fff;color:#000;padding:12px 28px;border-radius:50px;font-weight:700">Yes, I Subscribed! 🎉</button>
-        <button onclick="openYT()" style="background:transparent;color:#aaa;border:1px solid rgba(255,255,255,0.15);padding:12px 20px;border-radius:50px;font-weight:600">Open Channel Again</button>
+    <!-- Auth Panel -->
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:24px;max-width:380px;margin:0 auto;text-align:left">
+      <!-- Tab toggle -->
+      <div style="display:flex;border:1px solid rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;margin-bottom:20px">
+        <button id="tabSignup" onclick="switchTab('signup')" style="flex:1;padding:10px;background:#fff;color:#000;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all 0.2s">Create Account</button>
+        <button id="tabLogin" onclick="switchTab('login')" style="flex:1;padding:10px;background:transparent;color:#555;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all 0.2s">Log In</button>
       </div>
+      <input id="authEmail" class="inp" placeholder="Email address" type="email" autocomplete="email">
+      <input id="authPass" class="inp" placeholder="Password (min. 6 characters)" type="password" autocomplete="new-password">
+      <div id="trackWrap">
+        <label style="display:block;font-size:12px;color:#555;margin-bottom:4px">Exam Track:</label>
+        <select id="authTrack" class="inp" style="margin-bottom:4px">
+          <option value="CSP">CSP — Multi-year Permit (A2)</option>
+          <option value="CR">CR — Resident Card (B1)</option>
+          <option value="NAT">Naturalization (B2)</option>
+        </select>
+      </div>
+      <button id="authBtn" onclick="handleAuth()" style="width:100%;background:#fff;color:#000;padding:13px 0;border-radius:10px;font-size:15px;font-weight:700;margin-top:12px">Create Account →</button>
+      <p id="authErr" style="color:#dc2626;font-size:12px;margin-top:10px;min-height:16px;text-align:center"></p>
     </div>
+  </div>
+</div>
 
-    <!-- Step 3: Register -->
-    <div id="gateStep3" class="hidden fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:24px;max-width:380px;margin:0 auto;text-align:left">
-      <h3 style="font-size:18px;font-weight:700;margin-bottom:14px;text-align:center">🎯 Set Up Your Profile</h3>
-      <input id="regName" class="inp" placeholder="Your Name">
-      <input id="regEmail" class="inp" placeholder="Email" type="email">
-      <label style="display:block;font-size:12px;color:#666;margin-bottom:4px">Track:</label>
-      <select id="regTrack" class="inp" style="margin-bottom:16px">
-        <option value="CSP">CSP — Multi-year Permit (A2)</option>
-        <option value="CR">CR — Resident Card (B1)</option>
-        <option value="NAT">Naturalization (B2)</option>
-      </select>
-      <button onclick="startApp()" style="width:100%;background:#fff;color:#000;padding:13px 0;border-radius:10px;font-size:15px;font-weight:700">Start Practicing →</button>
-    </div>
+<!-- ====== VERIFY EMAIL ====== -->
+<div id="verifyPage" class="page hidden" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#050505,#1a0505,#050505);min-height:100vh">
+  <div style="max-width:420px;width:100%;text-align:center;padding:24px;position:relative;z-index:1">
+    <div style="font-size:56px;margin-bottom:16px">📧</div>
+    <h2 style="font-size:22px;font-weight:800;margin-bottom:8px">Verify Your Email</h2>
+    <p style="color:#888;font-size:14px;line-height:1.6;margin-bottom:6px">We sent a verification link to:</p>
+    <p id="verifyEmailAddr" style="color:#f59e0b;font-weight:700;font-size:14px;margin-bottom:20px;word-break:break-all"></p>
+    <p style="color:#555;font-size:13px;margin-bottom:24px;line-height:1.6">Click the link in your inbox, then tap the button below to unlock the app.</p>
+    <button onclick="checkVerification()" style="width:100%;background:#fff;color:#000;padding:14px;border-radius:10px;font-size:15px;font-weight:700;margin-bottom:10px">✅ I've Verified — Unlock App</button>
+    <button onclick="resendVerification()" style="width:100%;background:rgba(255,255,255,0.04);color:#aaa;border:1px solid rgba(255,255,255,0.1);padding:12px;border-radius:10px;font-size:14px;font-weight:600;margin-bottom:10px">Resend Verification Email</button>
+    <button onclick="logout()" style="background:transparent;color:#444;font-size:13px;border:none;cursor:pointer;padding:8px;text-decoration:underline">← Back to Log In</button>
+    <p id="verifyMsg" style="font-size:13px;margin-top:12px;min-height:16px"></p>
   </div>
 </div>
 
@@ -98,7 +105,10 @@ input,select{font-family:inherit}
 <div id="dashPage" class="page hidden">
   <div class="header">
     <div class="logo"><span class="r">France Ki Kahani</span> <span class="y">by Mooni</span></div>
-    <span class="sub" id="dashTrack"></span>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span class="sub" id="dashTrack"></span>
+      <button onclick="logout()" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#555;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:600">Sign Out</button>
+    </div>
   </div>
   <div class="mx">
     <div style="text-align:center;padding:20px 0 16px">
@@ -228,7 +238,23 @@ input,select{font-family:inherit}
   </div>
 </div>
 
-<script>
+<script type="module">
+// ====== FIREBASE ======
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendEmailVerification } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIza...",
+  authDomain: "french-civic-examen.firebaseapp.com",
+  projectId: "french-civic-examen",
+  storageBucket: "french-civic-examen.firebasestorage.app",
+  messagingSenderId: "...",
+  appId: "..."
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
 // ====== QUESTION BANK ======
 const Q=[
 {q:"Quelle est la devise de la République française ?",en:"What is the motto of the French Republic?",o:["Paix, Amour, Liberté","Liberté, Égalité, Fraternité","Honneur, Patrie, Valeur","Justice, Ordre, Progrès"],a:1,x:"Liberté, Égalité, Fraternité — har Mairie pe likha hota hai!",c:"Valeurs"},
@@ -318,6 +344,22 @@ const HK=[["💼","France Travail","Register IMMEDIATELY for job search or unemp
 // ====== STATE ======
 let user=null, quizQs=[], quizIdx=0, quizSel=null, quizResults=[], quizMode="full", timerOn=false, timerVal=2700, timerInterval=null;
 let sessionAskedQuestions=[];
+let authMode='signup';
+
+// ====== AUTH STATE OBSERVER ======
+onAuthStateChanged(auth, (fbUser) => {
+  if (!fbUser) {
+    showPage('gatePage');
+  } else if (!fbUser.emailVerified) {
+    $('verifyEmailAddr').textContent = fbUser.email;
+    $('verifyMsg').textContent = '';
+    showPage('verifyPage');
+  } else {
+    user = { email: fbUser.email, track: localStorage.getItem('fkk_track') || 'CSP' };
+    buildDashboard();
+    showPage('dashPage');
+  }
+});
 
 // ====== HELPERS ======
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=0|Math.random()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
@@ -325,28 +367,98 @@ function $(id){return document.getElementById(id);}
 function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));$(id).classList.remove('hidden');window.scrollTo(0,0);}
 
 // ====== GATE ======
-function openYT(){
-  window.open("https://www.youtube.com/@FrancekiKahanibyMooni","_blank");
-  $('gateStep1').classList.add('hidden');
-  $('gateStep2').classList.remove('hidden');
+function switchTab(mode) {
+  authMode = mode;
+  const isSignup = mode === 'signup';
+  $('tabSignup').style.background = isSignup ? '#fff' : 'transparent';
+  $('tabSignup').style.color = isSignup ? '#000' : '#555';
+  $('tabLogin').style.background = isSignup ? 'transparent' : '#fff';
+  $('tabLogin').style.color = isSignup ? '#555' : '#000';
+  $('trackWrap').style.display = isSignup ? 'block' : 'none';
+  $('authBtn').textContent = isSignup ? 'Create Account →' : 'Log In →';
+  $('authPass').autocomplete = isSignup ? 'new-password' : 'current-password';
+  $('authErr').textContent = '';
 }
-function showStep3(){
-  $('gateStep2').classList.add('hidden');
-  $('gateStep3').classList.remove('hidden');
+
+function friendlyError(code) {
+  const map = {
+    'auth/email-already-in-use': 'This email is already registered. Try logging in.',
+    'auth/invalid-email': 'Please enter a valid email address.',
+    'auth/weak-password': 'Password must be at least 6 characters.',
+    'auth/user-not-found': 'No account found with this email.',
+    'auth/wrong-password': 'Incorrect password. Please try again.',
+    'auth/invalid-credential': 'Incorrect email or password.',
+    'auth/too-many-requests': 'Too many attempts. Please try again later.',
+  };
+  return map[code] || 'Something went wrong. Please try again.';
 }
-function startApp(){
-  const n=$('regName').value.trim(),e=$('regEmail').value.trim(),t=$('regTrack').value;
-  if(!n||!e){alert('Please fill in your name and email!');return;}
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){alert('Please enter a valid email address (e.g. name@example.com)');return;}
-  user={name:n,email:e,track:t};
-  buildDashboard();
-  showPage('dashPage');
+
+async function handleAuth() {
+  const email = $('authEmail').value.trim();
+  const pass = $('authPass').value;
+  $('authErr').textContent = '';
+  if (!email || !pass) { $('authErr').textContent = 'Please fill in all fields.'; return; }
+  $('authBtn').textContent = '...';
+  $('authBtn').disabled = true;
+  try {
+    if (authMode === 'signup') {
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      localStorage.setItem('fkk_track', $('authTrack').value);
+      await sendEmailVerification(cred.user);
+      // onAuthStateChanged fires → shows verifyPage automatically
+    } else {
+      await signInWithEmailAndPassword(auth, email, pass);
+      // onAuthStateChanged fires → routes based on emailVerified
+    }
+  } catch (e) {
+    $('authErr').textContent = friendlyError(e.code);
+  } finally {
+    $('authBtn').disabled = false;
+    $('authBtn').textContent = authMode === 'signup' ? 'Create Account →' : 'Log In →';
+  }
+}
+
+async function checkVerification() {
+  $('verifyMsg').textContent = 'Checking...';
+  $('verifyMsg').style.color = '#888';
+  try {
+    await auth.currentUser.reload();
+    if (auth.currentUser.emailVerified) {
+      // onAuthStateChanged will fire and route to dashboard
+      $('verifyMsg').textContent = '✅ Verified! Loading...';
+      $('verifyMsg').style.color = '#10b981';
+    } else {
+      $('verifyMsg').textContent = '❌ Not verified yet — check your inbox and click the link.';
+      $('verifyMsg').style.color = '#dc2626';
+    }
+  } catch(e) {
+    $('verifyMsg').textContent = 'Error: ' + e.message;
+    $('verifyMsg').style.color = '#dc2626';
+  }
+}
+
+async function resendVerification() {
+  $('verifyMsg').textContent = '';
+  try {
+    await sendEmailVerification(auth.currentUser);
+    $('verifyMsg').textContent = '✅ Verification email resent!';
+    $('verifyMsg').style.color = '#10b981';
+  } catch(e) {
+    $('verifyMsg').textContent = 'Error: ' + e.message;
+    $('verifyMsg').style.color = '#dc2626';
+  }
+}
+
+async function logout() {
+  await signOut(auth);
+  // onAuthStateChanged fires → shows gatePage
 }
 
 // ====== DASHBOARD ======
 function buildDashboard(){
-  $('dashGreet').textContent='Namaste, '+user.name+'! 🙏';
-  $('dashTrack').textContent=user.track+' Track';
+  const handle=user.email?user.email.split('@')[0]:'';
+  $('dashGreet').textContent='Namaste, '+handle+'! 🙏';
+  $('dashTrack').textContent=(user.track||'CSP')+' Track';
   $('dashInfo').textContent=Q.length+' questions • 40 per exam • Need 80%';
   const grid=$('catGrid');grid.innerHTML='';
   Object.keys(CATS).forEach(c=>{
@@ -603,6 +715,19 @@ function renderRemQuestion(){
 }
 
 function nextRemQuestion(){remIdx++;renderRemQuestion();}
+
+// ====== WINDOW EXPORTS (required for HTML onclick with type="module") ======
+window.switchTab = switchTab;
+window.handleAuth = handleAuth;
+window.checkVerification = checkVerification;
+window.resendVerification = resendVerification;
+window.logout = logout;
+window.showPage = showPage;
+window.startFullExam = startFullExam;
+window.startCategoryQuiz = startCategoryQuiz;
+window.nextQuestion = nextQuestion;
+window.startRemediation = startRemediation;
+window.nextRemQuestion = nextRemQuestion;
 
 // ====== INIT ======
 $('qcount').textContent=Q.length+'+';
