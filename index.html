@@ -159,11 +159,9 @@ input,select{font-family:inherit}
     <div id="resCircles" style="display:flex;justify-content:center;gap:16px;margin-bottom:20px;flex-wrap:wrap"></div>
     <div id="resCats" style="text-align:left;margin-bottom:16px"></div>
     <div style="display:flex;gap:8px;margin-bottom:20px">
-      <button onclick="startFullExam()" style="flex:1;background:#dc2626;color:#fff;padding:12px;border-radius:8px;font-weight:700">Retry</button>
+      <button onclick="startFullExam(true)" style="flex:1;background:#dc2626;color:#fff;padding:12px;border-radius:8px;font-weight:700">Retry</button>
       <button onclick="showPage('dashPage')" style="flex:1;background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.1);padding:12px;border-radius:8px;font-weight:700">Dashboard</button>
     </div>
-    <p class="tag" style="text-align:left">All Answers</p>
-    <div id="resAnswers" style="text-align:left;padding-bottom:24px"></div>
 
     <!-- Remediation diagnostic — shown only on fail -->
     <div id="resDiagnostic" class="hidden" style="text-align:left;padding-bottom:28px;border-top:2px solid rgba(220,38,38,0.25);padding-top:20px;margin-top:8px">
@@ -173,6 +171,9 @@ input,select{font-family:inherit}
       <button onclick="startRemediation('vocab')" style="width:100%;background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(245,158,11,0.04));color:#fff;border:2px solid rgba(245,158,11,0.4);border-radius:12px;padding:18px 16px;font-size:15px;font-weight:700;text-align:left;margin-bottom:10px;display:flex;align-items:center;gap:14px;transition:border-color 0.2s" onmouseover="this.style.borderColor='rgba(245,158,11,0.8)'" onmouseout="this.style.borderColor='rgba(245,158,11,0.4)'"><span style="font-size:32px;flex-shrink:0">📖</span><span><span style="display:block;font-size:16px">Practice Vocabulary</span><span style="font-size:12px;font-weight:400;color:#f59e0b">22 questions • Complex French terms &amp; concepts</span></span></button>
       <button onclick="startRemediation('history')" style="width:100%;background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04));color:#fff;border:2px solid rgba(16,185,129,0.4);border-radius:12px;padding:18px 16px;font-size:15px;font-weight:700;text-align:left;display:flex;align-items:center;gap:14px;transition:border-color 0.2s" onmouseover="this.style.borderColor='rgba(16,185,129,0.8)'" onmouseout="this.style.borderColor='rgba(16,185,129,0.4)'"><span style="font-size:32px;flex-shrink:0">⏳</span><span><span style="display:block;font-size:16px">Practice History &amp; Dates</span><span style="font-size:12px;font-weight:400;color:#10b981">23 questions • Key dates, figures &amp; timelines</span></span></button>
     </div>
+
+    <p class="tag" style="text-align:left">All Answers</p>
+    <div id="resAnswers" style="text-align:left;padding-bottom:24px"></div>
   </div>
 </div>
 
@@ -193,7 +194,7 @@ input,select{font-family:inherit}
       <p style="font-size:20px;margin-bottom:8px">✅</p>
       <p style="font-weight:700;margin-bottom:4px">Remediation Complete!</p>
       <p style="color:#888;font-size:13px;margin-bottom:16px">Now restart the exam applying these strategies.</p>
-      <button onclick="startFullExam()" style="background:#dc2626;color:#fff;padding:12px 28px;border-radius:8px;font-weight:700">Retry Full Exam →</button>
+      <button onclick="startFullExam(true)" style="background:#dc2626;color:#fff;padding:12px 28px;border-radius:8px;font-weight:700">Retry Full Exam →</button>
     </div>
   </div>
 </div>
@@ -316,6 +317,7 @@ const HK=[["💼","France Travail","Register IMMEDIATELY for job search or unemp
 
 // ====== STATE ======
 let user=null, quizQs=[], quizIdx=0, quizSel=null, quizResults=[], quizMode="full", timerOn=false, timerVal=2700, timerInterval=null;
+let sessionAskedQuestions=[];
 
 // ====== HELPERS ======
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=0|Math.random()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
@@ -375,8 +377,13 @@ function buildHacks(){
 }
 
 // ====== QUIZ ======
-function startFullExam(){
-  quizQs=shuffle(Q).slice(0,40);quizMode="full";timerOn=true;timerVal=2700;
+function startFullExam(isRetry=false){
+  if(!isRetry) sessionAskedQuestions=[];
+  let pool=Q.filter(q=>!sessionAskedQuestions.includes(q.q));
+  if(pool.length<40){sessionAskedQuestions=[];pool=Q;}
+  quizQs=shuffle(pool).slice(0,40);
+  quizQs.forEach(q=>sessionAskedQuestions.push(q.q));
+  quizMode="full";timerOn=true;timerVal=2700;
   startQuiz();
 }
 function startCategoryQuiz(cat){
