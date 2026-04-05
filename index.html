@@ -730,86 +730,135 @@ const examCspArray = [
         explanation: "<strong>16 ans:</strong> L'instruction est obligatoire en France pour tous les enfants (français et étrangers) à partir de 3 ans et jusqu'à 16 ans." 
     }
   ];
-// ====== QUESTION BANK ======
-const Q=[
-{q:"Quelle est la devise de la République française ?",en:"What is the motto of the French Republic?",o:["Paix, Amour, Liberté","Liberté, Égalité, Fraternité","Honneur, Patrie, Valeur","Justice, Ordre, Progrès"],a:1,x:"Liberté, Égalité, Fraternité — har Mairie pe likha hota hai!",c:"Valeurs"},
-{q:"À quoi correspond la date du 14 juillet ?",en:"What does July 14th correspond to?",o:["Fin de la WWI","Prise de la Bastille","Signature de la Constitution","Abolition de l'esclavage"],a:1,x:"Bastille Day 1789! France ka Independence Day!",c:"Valeurs"},
-{q:"A-t-on le droit d'insulter quelqu'un parce qu'il est différent ?",en:"Can you insult someone for being different?",o:["Oui, liberté d'expression","Non, c'est interdit par la loi","Oui, si c'est une blague","Seulement sur internet"],a:1,x:"NO — discrimination and insults are punishable by law!",c:"Valeurs"},
-{q:"Quelle est la langue officielle de la République ?",en:"What is the official language?",o:["L'anglais","Le français","Le latin","Pas de langue officielle"],a:1,x:"French — Article 2. Isliye French seekhna zaroori hai!",c:"Valeurs"},
-{q:"Quelles sont les couleurs du drapeau français ?",en:"Colors of the French flag?",o:["Rouge, blanc, noir","Bleu, blanc, rouge","Vert, blanc, rouge","Bleu, jaune, rouge"],a:1,x:"Bleu, Blanc, Rouge. Blue+Red=Paris, White=monarchy.",c:"Valeurs"},
-{q:"Qu'est-ce que la Marseillaise ?",en:"What is La Marseillaise?",o:["Un monument","L'hymne national","Un musée","Une loi"],a:1,x:"National anthem! Written 1792 during Revolutionary wars.",c:"Valeurs"},
-{q:"Qui est Marianne ?",en:"Who is Marianne?",o:["Une reine","L'allégorie de la République","La première présidente","Une sainte"],a:1,x:"Allegory of the Republic. Her bust is in every Mairie!",c:"Valeurs"},
-{q:"Une personne peut-elle changer de religion ?",en:"Can a person change religion?",o:["Non, c'est interdit","Oui, librement","Avec autorisation","Seulement une fois"],a:1,x:"YES! Freedom of conscience. Koi restriction nahi!",c:"Valeurs"},
-{q:"Quel animal est un symbole de la France ?",en:"What animal symbolizes France?",o:["L'aigle","Le lion","Le coq","Le cheval"],a:2,x:"Le Coq Gaulois — Gallic Rooster!",c:"Valeurs"},
-{q:"Le régime de la France est :",en:"France's regime is:",o:["Monarchie","Dictature","République","Empire"],a:2,x:"A Republic! 5th Republic since 1958.",c:"Valeurs"},
-{q:"Qu'est-ce que la liberté ?",en:"What is liberty?",o:["Faire tout ce qu'on veut","Ce qui ne nuit pas à autrui","Ignorer les lois","Vivre sans règles"],a:1,x:"Doing what doesn't harm others!",c:"Valeurs"},
-{q:"La répudiation de sa femme est :",en:"Repudiation of wife is:",o:["Autorisée","Légale avec accord","Interdite en France","Possible après 10 ans"],a:2,x:"FORBIDDEN. Divorce must go through courts equally.",c:"Valeurs"},
-{q:"Peut-on brûler un drapeau français ?",en:"Can you burn a French flag?",o:["Oui","Non, c'est un délit","Oui, lors de manifs","Le 14 juillet"],a:1,x:"NO — criminal offense!",c:"Valeurs"},
-{q:"En quelle année la loi de séparation Églises/État ?",en:"When was the Church-State separation law?",o:["1789","1848","1905","1958"],a:2,x:"1905! 19-05 = 1 Nation, 9-to-5 Secular, 0 religion in state.",c:"Valeurs"},
-{q:"Quel droit est garanti par la laïcité ?",en:"What right does laïcité guarantee?",o:["Droit au travail","Liberté de conscience et de culte","Droit au logement","Liberté de commerce"],a:1,x:"Freedom of conscience AND worship!",c:"Valeurs"},
-{q:"À l'école publique, qui peut porter des signes religieux visibles ?",en:"Who can wear religious symbols at school?",o:["Enseignants","Élèves","Personne","Parents"],a:2,x:"NOBODY. Public school = neutral space.",c:"Valeurs"},
-{q:"Que dit l'article 1er de la Constitution ?",en:"What does Article 1 say?",o:["Monarchie","République indivisible, laïque, démocratique, sociale","Empire","Fédération"],a:1,x:"4 key words: indivisible, laïque, démocratique, sociale!",c:"Valeurs"},
-{q:"Qui nomme le Premier ministre ?",en:"Who appoints the PM?",o:["Le peuple","Le Président","Le Sénat","L'Assemblée"],a:1,x:"The PRESIDENT appoints the PM. PM is NOT elected!",c:"Institutions"},
-{q:"Le Parlement est composé de :",en:"Parliament is composed of:",o:["Président + Sénat","Assemblée + Sénat","Gouvernement + Sénat","Assemblée + Président"],a:1,x:"Assemblée + Sénat = Parliament. Like Lok Sabha + Rajya Sabha!",c:"Institutions"},
-{q:"Si un ministre ne respecte pas la loi ?",en:"What if a minister breaks the law?",o:["Rien","Jugé comme tout citoyen","Pardonné","Démission"],a:1,x:"Judged like ANY citizen! Nobody above the law.",c:"Institutions"},
-{q:"Combien de députés à l'Assemblée ?",en:"How many deputies?",o:["300","450","577","650"],a:2,x:"577 deputies! Elected for 5 years.",c:"Institutions"},
-{q:"Qui peut voter aux élections ?",en:"Who can vote?",o:["Tous résidents","Citoyens français majeurs","Étrangers avec titre","Tout le monde"],a:1,x:"French citizens 18+ on electoral lists.",c:"Institutions"},
-{q:"Durée du mandat des sénateurs ?",en:"Senator term length?",o:["4 ans","5 ans","6 ans","7 ans"],a:2,x:"6 years! Senate = Six!",c:"Institutions"},
-{q:"Quels sont les trois pouvoirs ?",en:"What are the three powers?",o:["Militaire, religieux, civil","Législatif, exécutif, judiciaire","Présidentiel, royal, populaire","National, régional, local"],a:1,x:"Législatif, Exécutif, Judiciaire!",c:"Institutions"},
-{q:"Le président a-t-il tous les pouvoirs ?",en:"Does the President have all powers?",o:["Oui","Non, pouvoirs séparés","Sauf judiciaire","Militaire seulement"],a:1,x:"NO. Powers are separated!",c:"Institutions"},
-{q:"Qui est le préfet ?",en:"Who is the prefect?",o:["Maire","Représentant de l'État","Juge","Député"],a:1,x:"State's rep in each department. Like District Collector!",c:"Institutions"},
-{q:"Qui dirige la commune ?",en:"Who leads the municipality?",o:["Préfet","Député","Maire","Sénateur"],a:2,x:"Le Maire! Elected for 6 years.",c:"Institutions"},
-{q:"Qu'est-ce que l'Hôtel de Matignon ?",en:"What is Hôtel de Matignon?",o:["Un hôtel","Résidence du PM","Musée","Parlement"],a:1,x:"PM's office! Élysée=President, Matignon=PM.",c:"Institutions"},
-{q:"Combien de régions ?",en:"How many regions?",o:["13","18","22","27"],a:1,x:"18 total (13 metro + 5 overseas).",c:"Institutions"},
-{q:"Depuis quand l'euro ?",en:"Since when is euro used?",o:["1999","2000","2002","2005"],a:2,x:"2002 — replaced the Franc!",c:"Institutions"},
-{q:"Combien de départements ?",en:"How many departments?",o:["96","101","110","89"],a:1,x:"101 departments.",c:"Institutions"},
-{q:"Durée du mandat présidentiel ?",en:"President's term?",o:["4 ans","5 ans","6 ans","7 ans"],a:1,x:"5 years — quinquennat.",c:"Institutions"},
-{q:"Le vote est-il obligatoire ?",en:"Is voting mandatory?",o:["Oui","Non, droit et devoir","Oui, toujours","Hommes seulement"],a:1,x:"NO — right and duty, not mandatory.",c:"Institutions"},
-{q:"Si le Président décède ?",en:"If President dies, who takes over?",o:["Premier Ministre","Président du Sénat","Président Assemblée","Ministre Intérieur"],a:1,x:"President of SENATE — NOT PM! Classic trick!",c:"Institutions"},
-{q:"Quel État a quitté l'UE ?",en:"Which state left EU?",o:["Suisse","Royaume-Uni","Norvège","Islande"],a:1,x:"UK — Brexit!",c:"Institutions"},
-{q:"Journée de l'Europe ?",en:"Europe Day?",o:["1er janvier","8 mars","9 mai","14 juillet"],a:2,x:"May 9!",c:"Institutions"},
-{q:"Pays fondateur de l'UE ?",en:"EU founding country?",o:["Royaume-Uni","France","Pologne","Espagne"],a:1,x:"France! With DE, IT, BE, NL, LU.",c:"Institutions"},
-{q:"La peine de mort est :",en:"Death penalty is:",o:["Autorisée","Abolie depuis 1981","En débat","Rare"],a:1,x:"ABOLISHED 1981! Under Mitterrand.",c:"Droits"},
-{q:"Qu'est-ce que la Constitution ?",en:"What is the Constitution?",o:["Journal","Texte fondamental de l'État","Roman","Contrat"],a:1,x:"Supreme law of France!",c:"Droits"},
-{q:"Est-il possible de divorcer ?",en:"Is divorce possible?",o:["Non","Oui, c'est un droit","Hommes seulement","Autorisation religieuse"],a:1,x:"YES — right for both spouses!",c:"Droits"},
-{q:"L'État peut-il limiter les droits ?",en:"Can the State limit rights?",o:["Jamais","Oui, pour l'intérêt général","Sans raison","Guerre seulement"],a:1,x:"YES — to protect general interest.",c:"Droits"},
-{q:"Victime de violences, que faire ?",en:"Violence victim, what to do?",o:["Rien","Porter plainte","Se venger","Quitter le pays"],a:1,x:"File a complaint! Call 3919.",c:"Droits"},
-{q:"Rôle de la police ?",en:"Police role?",o:["Faire les lois","Maintenir l'ordre","Juger","Impôts"],a:1,x:"Maintain order and protect!",c:"Droits"},
-{q:"Infraction la plus grave ?",en:"Most serious offense?",o:["Contravention","Délit","Crime","Amende"],a:2,x:"Crime > Délit > Contravention.",c:"Droits"},
-{q:"Polygamie légale ?",en:"Is polygamy legal?",o:["Oui","Non, interdite","Avec autorisation","Max 2"],a:1,x:"NO — strictly forbidden!",c:"Droits"},
-{q:"DDHC de quelle année ?",en:"Declaration of Rights year?",o:["1789","1848","1905","1958"],a:0,x:"1789! Foundation of French rights.",c:"Droits"},
-{q:"L'avortement est-il autorisé ?",en:"Is abortion allowed?",o:["Non","Oui, droit constitutionnel","Accord du mari","Raisons médicales"],a:1,x:"YES — constitutional right since 2024!",c:"Droits"},
-{q:"Début de la Révolution française ?",en:"French Revolution start?",o:["1776","1789","1805","1848"],a:1,x:"1789!",c:"Histoire"},
-{q:"Roi exécuté pendant la Révolution ?",en:"Which king was executed?",o:["Louis XIV","Louis XV","Louis XVI","Napoléon"],a:2,x:"Louis XVI — guillotined 1793.",c:"Histoire"},
-{q:"Qui était Napoléon Ier ?",en:"Who was Napoleon I?",o:["Roi","Empereur","Président","Pape"],a:1,x:"An EMPEROR — crowned 1804.",c:"Histoire"},
-{q:"Qu'est-ce que la Shoah ?",en:"What is the Shoah?",o:["Guerre","Génocide des Juifs","Révolution","Traité"],a:1,x:"Genocide of Jews during WWII.",c:"Histoire"},
-{q:"Pays colonisé par la France ?",en:"Country colonized by France?",o:["Japon","Algérie","Brésil","Chine"],a:1,x:"Algeria (1830-1962).",c:"Histoire"},
-{q:"1944 : changement pour les femmes ?",en:"1944 change for women?",o:["Travailler","Droit de vote","Divorcer","Conduire"],a:1,x:"VOTING RIGHTS! Took 155 years!",c:"Histoire"},
-{q:"Esclavage aboli définitivement ?",en:"Slavery abolished?",o:["1789","1848","1905","1944"],a:1,x:"1848 — Victor Schœlcher.",c:"Histoire"},
-{q:"Fondateur de la Ve République ?",en:"5th Republic founder?",o:["Napoléon","De Gaulle","Mitterrand","Chirac"],a:1,x:"De Gaulle in 1958.",c:"Histoire"},
-{q:"Quel fleuve traverse Paris ?",en:"River through Paris?",o:["Rhône","Loire","Seine","Garonne"],a:2,x:"La Seine!",c:"Histoire"},
-{q:"Capitale de la France ?",en:"Capital of France?",o:["Lyon","Marseille","Paris","Strasbourg"],a:2,x:"Paris!",c:"Histoire"},
-{q:"Montagnes France-Espagne ?",en:"Mountains France-Spain?",o:["Alpes","Pyrénées","Jura","Vosges"],a:1,x:"Les Pyrénées!",c:"Histoire"},
-{q:"Qui était Molière ?",en:"Who was Molière?",o:["Roi","Peintre","Écrivain/dramaturge","Général"],a:2,x:"France's Shakespeare!",c:"Histoire"},
-{q:"Qu'est-ce que le Louvre ?",en:"What is the Louvre?",o:["Restaurant","Musée","Stade","Église"],a:1,x:"World's largest art museum!",c:"Histoire"},
-{q:"Peine supprimée en 1981 ?",en:"Abolished in 1981?",o:["Prison","Amende","Peine de mort","Travail forcé"],a:2,x:"DEATH PENALTY.",c:"Histoire"},
-{q:"Population France ?",en:"France population?",o:["50M","60M","68M","80M"],a:2,x:"About 68 million!",c:"Histoire"},
-{q:"Surnom de Louis XIV ?",en:"Louis XIV nickname?",o:["Roi Soleil","Roi Guerrier","Bon Roi","Roi Sage"],a:0,x:"Le Roi Soleil — Sun King!",c:"Histoire"},
-{q:"Mariage reconnu par l'État ?",en:"State-recognized marriage?",o:["Religieux","Civil","Traditionnel","Tous"],a:1,x:"Only CIVIL marriage at Mairie!",c:"Société"},
-{q:"Numéro du SAMU ?",en:"SAMU number?",o:["17","15","18","112"],a:1,x:"15=SAMU, 17=Police, 18=Pompiers.",c:"Société"},
-{q:"Numéro de la police ?",en:"Police number?",o:["15","17","18","112"],a:1,x:"17!",c:"Société"},
-{q:"Durée légale du travail ?",en:"Legal weekly hours?",o:["30h","35h","39h","40h"],a:1,x:"35 hours!",c:"Société"},
-{q:"Qu'est-ce que le SMIC ?",en:"What is SMIC?",o:["Impôt","Salaire minimum","Aide","Examen"],a:1,x:"Minimum wage!",c:"Société"},
-{q:"Première démarche emploi ?",en:"First job search step?",o:["Commissariat","France Travail","SAMU","Mairie"],a:1,x:"Register with France Travail!",c:"Société"},
-{q:"Une femme peut créer une entreprise ?",en:"Can a woman start a business?",o:["Non","Oui, librement","Accord du mari","Certains secteurs"],a:1,x:"YES, freely!",c:"Société"},
-{q:"Accès aux soins ?",en:"Healthcare access?",o:["Français seulement","Tous résidant en France","Salariés","Riches"],a:1,x:"EVERYONE in France!",c:"Société"},
-{q:"Carte Vitale sert à ?",en:"Carte Vitale is for?",o:["Voter","Remboursement soins","Voyager","Conduire"],a:1,x:"Healthcare reimbursements!",c:"Société"},
-{q:"Instruction obligatoire dès ?",en:"Mandatory education from?",o:["3 ans","5 ans","6 ans","7 ans"],a:0,x:"3 years old!",c:"Société"},
-{q:"Âge de la majorité ?",en:"Age of majority?",o:["16","18","20","21"],a:1,x:"18! Vote, contracts, marry.",c:"Société"},
-{q:"Déclarer une naissance où ?",en:"Where to declare birth?",o:["Hôpital","Mairie","Préfecture","Police"],a:1,x:"At the MAIRIE! Within 5 days.",c:"Société"},
-{q:"Travail non déclaré est :",en:"Undeclared work is:",o:["Normal","Interdit","Autorisé étrangers","Accepté"],a:1,x:"ILLEGAL!",c:"Société"},
-{q:"Diplôme fin du lycée ?",en:"High school diploma?",o:["Brevet","Baccalauréat","Licence","Master"],a:1,x:"Le Bac!",c:"Société"},
+
+  const examCrArray = [
+    // --- CR: PRINCIPES ET VALEURS ---
+    { 
+        question: "Lequel des actes suivants constitue une participation citoyenne ?", 
+        options: ["Payer ses courses", "Voter aux élections", "Regarder la télévision", "Aller au travail"], 
+        correct: 1, 
+        explanation: "<strong>Voter:</strong> Le vote est l'acte citoyen par excellence dans une démocratie, permettant de choisir ses représentants." 
+    },
+    { 
+        question: "Que garantit la liberté d'expression ?", 
+        options: ["Le droit d'insulter", "Le droit d'exprimer ses opinions dans le respect de la loi", "Le droit de mentir à la police", "Le droit de se taire"], 
+        correct: 1, 
+        explanation: "<strong>Exprimer ses opinions:</strong> C'est un droit fondamental garanti par la Déclaration des Droits de l'Homme, limité seulement par les abus (diffamation, racisme)." 
+    },
+    { 
+        question: "À quoi sert un titre de séjour ?", 
+        options: ["À voyager gratuitement", "À justifier de son droit au séjour légal en France", "À voter aux élections présidentielles", "À ne pas payer d'impôts"], 
+        correct: 1, 
+        explanation: "<strong>Séjour légal:</strong> C'est le document officiel qui prouve qu'un étranger a l'autorisation de résider sur le territoire français." 
+    },
+    { 
+        question: "La liberté de circulation permet à chacun de :", 
+        options: ["Conduire sans permis", "Se déplacer librement sur le territoire national", "Prendre l'avion gratuitement", "Traverser au feu rouge"], 
+        correct: 1, 
+        explanation: "<strong>Se déplacer librement:</strong> Tout citoyen ou résident légal peut se déplacer librement en France et choisir son lieu de résidence." 
+    },
+    { 
+        question: "Complétez ces paroles de la Marseillaise : « Aux armes [...] ! Formez vos bataillons »", 
+        options: ["Citoyens", "Soldats", "Français", "Enfants"], 
+        correct: 0, 
+        explanation: "<strong>Citoyens:</strong> C'est le refrain le plus célèbre de l'hymne national : « Aux armes, citoyens ! »" 
+    },
+    { 
+        question: "Conformément à la liberté individuelle, une personne peut :", 
+        options: ["Voler pour se nourrir", "Choisir sa religion, son métier et son lieu de vie", "Refuser de payer ses impôts", "Ignorer les feux de circulation"], 
+        correct: 1, 
+        explanation: "<strong>Faire ses propres choix:</strong> La liberté individuelle garantit le droit de mener sa vie comme on l'entend, dans le respect des lois." 
+    },
+    { 
+        question: "En tant que parent, puis-je refuser que mon enfant participe aux cours de sport à l'école parce qu'ils sont mixtes ?", 
+        options: ["Oui, c'est mon droit", "Non, le programme scolaire est obligatoire", "Oui, avec un mot du médecin", "Seulement au collège"], 
+        correct: 1, 
+        explanation: "<strong>Non:</strong> L'Éducation nationale impose un programme obligatoire pour tous. La mixité filles/garçons est un principe fondamental de l'école publique." 
+    },
+    { 
+        question: "Un employeur refuse d'embaucher des femmes dans son entreprise. Que dit la loi ?", 
+        options: ["C'est son droit en tant que patron", "C'est une discrimination interdite et punie", "C'est autorisé pour les travaux physiques", "Il doit payer une taxe"], 
+        correct: 1, 
+        explanation: "<strong>Discrimination:</strong> Le refus d'embauche fondé sur le sexe est un délit grave puni par le Code pénal." 
+    },
+    { 
+        question: "Dans les écoles publiques, qui est autorisé à porter des signes religieux très visibles ?", 
+        options: ["Les élèves", "Les professeurs", "Personne", "Le directeur"], 
+        correct: 2, 
+        explanation: "<strong>Personne:</strong> En vertu du principe de laïcité (loi de 2004), le port de signes religieux ostentatoires est interdit pour le personnel et les élèves des écoles publiques." 
+    },
+    { 
+        question: "Selon le principe de laïcité, que signifie la neutralité de l'État ?", 
+        options: ["L'État n'a pas d'armée", "L'État ne favorise ni ne finance aucune religion", "L'État interdit les religions", "L'État ne donne pas d'avis politique"], 
+        correct: 1, 
+        explanation: "<strong>Ne favorise aucune religion:</strong> L'État est neutre et indépendant des organisations religieuses. Il garantit le libre exercice des cultes mais n'en subventionne aucun." 
+    }
+    , // <--- Don't forget the comma!
+    // --- CR: INSTITUTIONS ET POLITIQUE ---
+    { 
+        question: "Qu'est-ce que l'État de droit ?", 
+        options: ["Le pouvoir absolu de la police", "Un système où tout le monde, y compris l'État, est soumis à la loi", "L'obligation de voter", "Le droit à l'aide de l'État"], 
+        correct: 1, 
+        explanation: "<strong>Soumis à la loi:</strong> Dans un État de droit, les gouvernants comme les citoyens doivent respecter les mêmes lois." 
+    },
+    { 
+        question: "Le Président de la République a commis un délit. Quelle affirmation est correcte ?", 
+        options: ["Il a l'immunité totale à vie", "Il ne peut jamais être jugé", "Il n'est pas au-dessus des lois et peut être jugé à la fin de son mandat", "Il choisit son juge"], 
+        correct: 2, 
+        explanation: "<strong>Il peut être jugé:</strong> Bien qu'il soit protégé pendant son mandat, un ancien président peut être jugé et condamné par la justice ordinaire." 
+    },
+    { 
+        question: "Une personne peut-elle voter à la place d'une autre ?", 
+        options: ["Non, jamais", "Oui, en établissant une procuration officielle", "Oui, avec sa carte d'identité", "Oui, si c'est son conjoint"], 
+        correct: 1, 
+        explanation: "<strong>Par procuration:</strong> Il est possible de donner mandat à un autre électeur pour voter à sa place, via une démarche officielle." 
+    },
+    { 
+        question: "À la fin de son mandat, le Président de la République peut-il décider de rester au pouvoir ?", 
+        options: ["Oui, s'il y a une crise", "Non, il doit se représenter aux élections ou quitter le pouvoir", "Oui, si l'armée le soutient", "Oui, avec l'accord du maire"], 
+        correct: 1, 
+        explanation: "<strong>Non:</strong> La France est une démocratie. Le pouvoir n'est pas conservé par la force, mais remis en jeu lors d'élections régulières." 
+    },
+    { 
+        question: "Qui dirige l'action du Gouvernement ?", 
+        options: ["Le Président de l'Assemblée", "Le Premier ministre", "Le ministre de l'Intérieur", "Le Conseil d'État"], 
+        correct: 1, 
+        explanation: "<strong>Le Premier ministre:</strong> Il est le chef du Gouvernement, il coordonne l'action des ministres et assure l'exécution des lois." 
+    },
+    { 
+        question: "Quel est le rôle du Défenseur des droits ?", 
+        options: ["Défendre le pays en cas de guerre", "Veiller au respect des droits et libertés des citoyens", "Juger les criminels", "Protéger le Président"], 
+        correct: 1, 
+        explanation: "<strong>Veiller au respect des droits:</strong> C'est une autorité indépendante chargée de défendre vos droits si une administration ne les respecte pas ou en cas de discrimination." 
+    },
+    { 
+        question: "Quel est le rôle principal du département (Conseil départemental) ?", 
+        options: ["L'action sociale (RSA, aide aux personnes âgées, collèges)", "L'armée", "La politique étrangère", "Les universités"], 
+        correct: 0, 
+        explanation: "<strong>L'action sociale:</strong> Les départements gèrent les solidarités, la protection de l'enfance, le RSA et les collèges." 
+    },
+    { 
+        question: "Quelle est la devise de l'Union européenne ?", 
+        options: ["Liberté, Égalité, Fraternité", "Unie dans la diversité", "L'Europe de la paix", "Tous pour un"], 
+        correct: 1, 
+        explanation: "<strong>Unie dans la diversité:</strong> Cette devise souligne que les Européens s'unissent pour œuvrer en faveur de la paix, tout en s'enrichissant des diverses cultures." 
+    }
 ];
+// ====== QUESTION POOL ======
+// Returns the correct array for the active track, normalized to internal schema.
+function getPool(){
+  const track=(user&&user.track)||localStorage.getItem('fkk_track')||'CSP';
+  const raw=(track==='CR')?examCrArray:examCspArray;
+  return raw.map(item=>item.q?item:{
+    q:item.question,
+    en:item.en||'',
+    o:item.options,
+    a:item.correct,
+    x:item.explanation||'',
+    c:item.c||'Général',
+  });
+}
+
 
 const CATS={Valeurs:"Principes & Valeurs",Institutions:"Institutions & Politique",Droits:"Droits & Devoirs",Histoire:"Histoire & Culture",Société:"Vie en Société"};
 const CICONS={Valeurs:"🇫🇷",Institutions:"🏛️",Droits:"⚖️",Histoire:"📚",Société:"🏠"};
@@ -934,10 +983,10 @@ function buildDashboard(){
   const handle=user.email?user.email.split('@')[0]:'';
   $('dashGreet').textContent='Namaste, '+handle+'! 🙏';
   $('dashTrack').textContent=(user.track||'CSP')+' Track';
-  $('dashInfo').textContent=Q.length+' questions • 40 per exam • Need 80%';
+  $('dashInfo').textContent=getPool().length+' questions • 40 per exam • Need 80%';
   const grid=$('catGrid');grid.innerHTML='';
   Object.keys(CATS).forEach(c=>{
-    const n=Q.filter(q=>q.c===c).length;
+    const n=getPool().filter(q=>q.c===c).length;
     const d=document.createElement('div');d.className='card';
     d.innerHTML='<span style="font-size:20px">'+CICONS[c]+'</span><br><b style="font-size:12px">'+CATS[c]+'</b><br><span style="font-size:11px;color:#666">'+n+'Q</span>';
     d.onclick=()=>startCategoryQuiz(c);
@@ -966,6 +1015,7 @@ function buildHacks(){
 // ====== QUIZ ======
 function startFullExam(isRetry=false){
   if(!isRetry) sessionAskedQuestions=[];
+  const Q=getPool();
   let pool=Q.filter(q=>!sessionAskedQuestions.includes(q.q));
   if(pool.length<40){sessionAskedQuestions=[];pool=Q;}
   quizQs=shuffle(pool).slice(0,40);
@@ -974,7 +1024,7 @@ function startFullExam(isRetry=false){
   startQuiz();
 }
 function startCategoryQuiz(cat){
-  quizQs=shuffle(Q.filter(q=>q.c===cat));quizMode=cat;timerOn=false;
+  quizQs=shuffle(getPool().filter(q=>q.c===cat));quizMode=cat;timerOn=false;
   if(!quizQs.length)return;
   startQuiz();
 }
@@ -1205,5 +1255,5 @@ window.startRemediation = startRemediation;
 window.nextRemQuestion = nextRemQuestion;
 
 // ====== INIT ======
-$('qcount').textContent=Q.length+'+';
+$('qcount').textContent=Math.max(examCspArray.length,examCrArray.length)+'+';
 </script>
