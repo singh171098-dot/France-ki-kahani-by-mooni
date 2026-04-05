@@ -177,9 +177,10 @@ select option{background:#1a1a1a;color:#ffffff}
     <h2 id="resTitle" style="font-size:22px;font-weight:800;margin-bottom:4px"></h2>
     <p id="resSub" style="color:#888;font-size:13px;margin-bottom:20px"></p>
     <div id="resCircles" style="display:flex;justify-content:center;gap:16px;margin-bottom:20px;flex-wrap:wrap"></div>
+    <div id="resSyllabus" style="margin-bottom:16px"></div>
     <div id="resCats" style="text-align:left;margin-bottom:16px"></div>
     <div style="display:flex;gap:8px;margin-bottom:20px">
-      <button onclick="startFullExam(true)" style="flex:1;background:#dc2626;color:#fff;padding:12px;border-radius:8px;font-weight:700">Retry</button>
+      <button onclick="startFullExam()" style="flex:1;background:#dc2626;color:#fff;padding:12px;border-radius:8px;font-weight:700">Retry</button>
       <button onclick="showPage('dashPage')" style="flex:1;background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.1);padding:12px;border-radius:8px;font-weight:700">Dashboard</button>
     </div>
 
@@ -214,7 +215,7 @@ select option{background:#1a1a1a;color:#ffffff}
       <p style="font-size:20px;margin-bottom:8px">✅</p>
       <p style="font-weight:700;margin-bottom:4px">Remediation Complete!</p>
       <p style="color:#888;font-size:13px;margin-bottom:16px">Now restart the exam applying these strategies.</p>
-      <button onclick="startFullExam(true)" style="background:#dc2626;color:#fff;padding:12px 28px;border-radius:8px;font-weight:700">Retry Full Exam →</button>
+      <button onclick="startFullExam()" style="background:#dc2626;color:#fff;padding:12px 28px;border-radius:8px;font-weight:700">Retry Full Exam →</button>
     </div>
   </div>
 </div>
@@ -876,7 +877,6 @@ const HK=[["💼","France Travail","Register IMMEDIATELY for job search or unemp
 
 // ====== STATE ======
 let user=null, quizQs=[], quizIdx=0, quizSel=null, quizResults=[], quizMode="full", timerOn=false, timerVal=2700, timerInterval=null;
-let sessionAskedQuestions=[];
 let authMode='signup';
 
 // ====== AUTH STATE OBSERVER ======
@@ -1037,14 +1037,43 @@ function buildHacks(){
   });
 }
 
+// ====== SYLLABUS TRACKER ======
+function syllabusKey(){
+  const uid=auth.currentUser?auth.currentUser.uid:'guest';
+  const track=(user&&user.track)||'CSP';
+  return 'syllabus_'+uid+'_'+track;
+}
+function getSeenIds(){
+  try{ return JSON.parse(localStorage.getItem(syllabusKey())||'[]'); }
+  catch(e){ return []; }
+}
+function markSeen(ids){
+  const existing=getSeenIds();
+  const merged=[...new Set([...existing,...ids])];
+  localStorage.setItem(syllabusKey(),JSON.stringify(merged));
+}
+function resetSyllabus(){
+  localStorage.removeItem(syllabusKey());
+  buildDashboard();
+  showPage('dashPage');
+}
+
 // ====== QUIZ ======
-function startFullExam(isRetry=false){
-  if(!isRetry) sessionAskedQuestions=[];
+function startFullExam(){
   const Q=getPool();
-  let pool=Q.filter(q=>!sessionAskedQuestions.includes(q.q));
-  if(pool.length<40){sessionAskedQuestions=[];pool=Q;}
+  const seen=getSeenIds();
+  let pool=Q.filter((_,i)=>!seen.includes(i));
+  if(pool.length===0){
+    // All seen — show reset prompt on dash instead of starting
+    alert('You have seen all '+Q.length+' questions! Resetting your syllabus progress so you can start fresh.');
+    resetSyllabus();
+    return;
+  }
+  // Take up to 40 unseen questions
   quizQs=shuffle(pool).slice(0,40);
-  quizQs.forEach(q=>sessionAskedQuestions.push(q.q));
+  // Mark this batch as seen immediately
+  const usedIndices=quizQs.map(q=>Q.indexOf(q));
+  markSeen(usedIndices);
   quizMode="full";timerOn=true;timerVal=2700;
   startQuiz();
 }
@@ -1151,6 +1180,36 @@ function showResults(){
     return '<div style="background:rgba(255,255,255,0.03);border:1px solid '+(w?'rgba(220,38,38,0.2)':'rgba(255,255,255,0.06)')+';border-radius:8px;padding:8px 12px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:600">'+(CATS[c]||c)+(w?' ⚠️':'')+'</span><div style="display:flex;align-items:center;gap:6px"><div style="width:50px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden"><div style="height:100%;width:'+p+'%;background:'+(w?'#dc2626':'#10b981')+'"></div></div><span style="font-size:11px;font-weight:700;color:'+(w?'#dc2626':'#10b981')+';font-family:monospace">'+p+'%</span></div></div>';
   }).join('');
   
+  // ---- Syllabus tracker panel ----
+  if(quizMode==='full'){
+    const totalQ=getPool().length;
+    const seenCount=getSeenIds().length;
+    const remaining=totalQ-seenCount;
+    let syllabusHTML='';
+    if(remaining<=0){
+      syllabusHTML=`<div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:14px 16px;text-align:left">
+        <p style="font-size:12px;font-weight:700;color:#10b981;margin-bottom:4px">🎓 Syllabus Complete!</p>
+        <p style="font-size:13px;color:#aaa;margin-bottom:10px">You have seen all <strong style="color:#fff">${totalQ}</strong> questions in your syllabus.</p>
+        <button onclick="resetSyllabus()" style="background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.15);padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700">🔄 Reset Syllabus Progress</button>
+      </div>`;
+    } else {
+      const pctDone=Math.round(seenCount/totalQ*100);
+      syllabusHTML=`<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px 16px;text-align:left">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <p style="font-size:12px;font-weight:700;color:#f59e0b">📚 Syllabus Progress</p>
+          <span style="font-size:11px;font-family:monospace;color:#555">${seenCount}/${totalQ} seen</span>
+        </div>
+        <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;margin-bottom:10px">
+          <div style="height:100%;width:${pctDone}%;background:linear-gradient(90deg,#dc2626,#f59e0b);border-radius:2px"></div>
+        </div>
+        <p style="font-size:13px;color:#aaa">You have <strong style="color:#fff">${remaining}</strong> question${remaining===1?'':'s'} left in your syllabus to practice.</p>
+      </div>`;
+    }
+    $('resSyllabus').innerHTML=syllabusHTML;
+  } else {
+    $('resSyllabus').innerHTML='';
+  }
+
   // Show remediation diagnostic only when failed
   if(pass){$('resDiagnostic').classList.add('hidden');}
   else{$('resDiagnostic').classList.remove('hidden');}
@@ -1275,6 +1334,7 @@ window.logout = logout;
 window.loginWithGoogle = loginWithGoogle;
 window.showPage = showPage;
 window.startFullExam = startFullExam;
+window.resetSyllabus = resetSyllabus;
 window.startCategoryQuiz = startCategoryQuiz;
 window.nextQuestion = nextQuestion;
 window.startRemediation = startRemediation;
