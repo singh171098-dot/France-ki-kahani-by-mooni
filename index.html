@@ -71,6 +71,7 @@ select option{background:#1a1a1a;color:#ffffff}
         <button id="tabSignup" onclick="switchTab('signup')" style="flex:1;padding:10px;background:#fff;color:#000;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all 0.2s">Create Account</button>
         <button id="tabLogin" onclick="switchTab('login')" style="flex:1;padding:10px;background:transparent;color:#555;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all 0.2s">Log In</button>
       </div>
+      <div id="nameWrap"><input id="authName" class="inp" placeholder="Full Name" type="text" autocomplete="name"></div>
       <input id="authEmail" class="inp" placeholder="Email address" type="email" autocomplete="email">
       <input id="authPass" class="inp" placeholder="Password (min. 6 characters)" type="password" autocomplete="new-password">
       <div id="trackWrap">
@@ -252,7 +253,7 @@ select option{background:#1a1a1a;color:#ffffff}
 <script type="module">
 // ====== FIREBASE ======
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendEmailVerification, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendEmailVerification, GoogleAuthProvider, signInWithPopup, updateProfile } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA7ni8arrJPAvx3zHZufX3UXj3BLatygjw",
@@ -890,7 +891,7 @@ onAuthStateChanged(auth, (fbUser) => {
       $('verifyMsg').textContent = '';
       showPage('verifyPage');
     } else {
-      user = { email: fbUser.email, track: localStorage.getItem('fkk_track') || 'CSP' };
+      user = { email: fbUser.email, displayName: fbUser.displayName || '', track: localStorage.getItem('fkk_track') || 'CSP' };
       buildDashboard();
       showPage('dashPage');
     }
@@ -910,6 +911,7 @@ function switchTab(mode) {
   $('tabSignup').style.color = isSignup ? '#000' : '#555';
   $('tabLogin').style.background = isSignup ? 'transparent' : '#fff';
   $('tabLogin').style.color = isSignup ? '#555' : '#000';
+  $('nameWrap').style.display = isSignup ? 'block' : 'none';
   $('trackWrap').style.display = isSignup ? 'block' : 'none';
   $('authBtn').textContent = isSignup ? 'Create Account →' : 'Log In →';
   $('authPass').autocomplete = isSignup ? 'new-password' : 'current-password';
@@ -932,13 +934,16 @@ function friendlyError(code) {
 async function handleAuth() {
   const email = $('authEmail').value.trim();
   const pass = $('authPass').value;
+  const name = authMode === 'signup' ? $('authName').value.trim() : '';
   $('authErr').textContent = '';
+  if (authMode === 'signup' && !name) { $('authErr').textContent = 'Please enter your full name.'; return; }
   if (!email || !pass) { $('authErr').textContent = 'Please fill in all fields.'; return; }
   $('authBtn').textContent = '...';
   $('authBtn').disabled = true;
   try {
     if (authMode === 'signup') {
       const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      await updateProfile(cred.user, { displayName: name });
       localStorage.setItem('fkk_track', $('authTrack').value);
       await sendEmailVerification(cred.user);
       // onAuthStateChanged fires → shows verifyPage automatically
@@ -1005,7 +1010,7 @@ async function loginWithGoogle() {
 
 // ====== DASHBOARD ======
 function buildDashboard(){
-  const handle=user.email?user.email.split('@')[0]:'';
+  const handle=user.displayName||'Friend';
   $('dashGreet').textContent='Namaste, '+handle+'! 🙏';
   $('dashTrack').textContent=(user.track||'CSP')+' Track';
   $('dashInfo').textContent=getPool().length+' questions • 40 per exam • Need 80%';
